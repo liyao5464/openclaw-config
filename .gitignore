@@ -1,0 +1,43 @@
+# 敏感信息
+.env
+*.env
+.baoyu-skills/.env
+
+# OpenClaw运行时
+.restart-sentinel.json
+restart-sentinel.json
+
+# 日志
+*.log
+logs/
+
+# 临时文件
+tmp/
+temp/
+*.tmp
+
+# 媒体文件（太大）
+media/inbound/
+media/outbound/
+*.jpg
+*.png
+*.mp4
+*.mp3
+
+# 文章草稿（可选，如需要保留请注释）
+# drafts/
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
