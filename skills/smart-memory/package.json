@@ -1,0 +1,36 @@
+{
+  "name": "smart-memory",
+  "version": "1.0.0",
+  "description": "Hybrid document retrieval with BM25 + Vector search for OpenClaw",
+  "type": "module",
+  "main": "lib/smart-memory.ts",
+  "bin": {
+    "smart-memory": "./scripts/cli.ts"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "bun run scripts/cli.ts",
+    "mcp": "bun run scripts/mcp-server.ts"
+  },
+  "dependencies": {
+    "better-sqlite3": "^9.4.0",
+    "glob": "^10.3.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.9",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "openclaw",
+    "rag",
+    "bm25",
+    "vector-search",
+    "document-retrieval",
+    "token-optimization"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,121 @@
+{
+  "meta": {
+    "description": "OpenClaw多分身配置 - 4个AI助手协同工作",
+    "version": "2026.02",
+    "author": "老里"
+  },
+  "agents": {
+    "defaults": {
+      "model": "kimi-coding/k2p5",
+      "workspace": "./workspace"
+    },
+    "list": [
+      {
+        "id": "main",
+        "default": true,
+        "name": "私人助理",
+        "workspace": "./workspace",
+        "model": "kimi-coding/k2p5",
+        "description": "日常陪伴、情感支持、生活提醒"
+      },
+      {
+        "id": "director",
+        "default": false,
+        "name": "内容总监",
+        "workspace": "./workspace-director",
+        "model": "kimi-coding/k2p5",
+        "description": "选题策划、文章生成、公众号发布"
+      },
+      {
+        "id": "nanny",
+        "default": false,
+        "name": "育儿师",
+        "workspace": "./workspace-nanny",
+        "model": "kimi-coding/k2p5",
+        "description": "宝宝护理、辅食指导、发育咨询"
+      },
+      {
+        "id": "video-director",
+        "default": false,
+        "name": "视频总监",
+        "workspace": "./workspace-video-director",
+        "model": "kimi-coding/k2p5",
+        "description": "AI视频生成、Seedance提示词"
+      }
+    ]
+  },
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "dmPolicy": "pairing",
+      "accounts": {
+        "bot_main": {
+          "name": "私人助理",
+          "botToken": "YOUR_BOT_TOKEN_HERE"
+        },
+        "bot_director": {
+          "name": "内容总监",
+          "botToken": "YOUR_BOT_TOKEN_HERE"
+        },
+        "bot_nanny": {
+          "name": "育儿师",
+          "botToken": "YOUR_BOT_TOKEN_HERE"
+        },
+        "bot_video": {
+          "name": "视频总监",
+          "botToken": "YOUR_BOT_TOKEN_HERE"
+        }
+      }
+    },
+    "feishu": {
+      "enabled": true,
+      "appId": "YOUR_FEISHU_APPID_HERE",
+      "appSecret": "YOUR_FEISHU_SECRET_HERE"
+    }
+  },
+  "bindings": [
+    {
+      "agentId": "main",
+      "match": {
+        "channel": "telegram",
+        "accountId": "bot_main"
+      }
+    },
+    {
+      "agentId": "director",
+      "match": {
+        "channel": "telegram",
+        "accountId": "bot_director"
+      }
+    },
+    {
+      "agentId": "nanny",
+      "match": {
+        "channel": "telegram",
+        "accountId": "bot_nanny"
+      }
+    },
+    {
+      "agentId": "video-director",
+      "match": {
+        "channel": "telegram",
+        "accountId": "bot_video"
+      }
+    }
+  ],
+  "skills": {
+    "baoyu-post-to-wechat": {
+      "enabled": true,
+      "env": {
+        "WECHAT_APP_ID": "YOUR_WECHAT_APPID_HERE",
+        "WECHAT_APP_SECRET": "YOUR_WECHAT_SECRET_HERE"
+      }
+    },
+    "baoyu-image-gen": {
+      "enabled": true,
+      "env": {
+        "FAL_KEY": "YOUR_FAL_KEY_HERE"
+      }
+    }
+  }
+}

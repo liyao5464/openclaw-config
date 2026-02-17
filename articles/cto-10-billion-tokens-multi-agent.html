@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一个CTO每天烧10亿token后告诉我：为什么一个AI助理已经不够用了</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .article-header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            line-height: 1.4;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .subtitle {
+            font-size: 15px;
+            color: #00d4ff;
+            font-style: italic;
+            opacity: 0.9;
+        }
+        .author {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+        .content {
+            font-size: 16px;
+            color: #d0d0d0;
+        }
+        .content p {
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+        .content h2 {
+            font-size: 20px;
+            color: #00d4ff;
+            margin: 40px 0 20px;
+            padding-left: 15px;
+            border-left: 4px solid #00d4ff;
+            font-weight: 600;
+        }
+        .content h3 {
+            font-size: 17px;
+            color: #70e0ff;
+            margin: 30px 0 15px;
+            font-weight: 600;
+        }
+        .highlight-box {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px 0;
+            position: relative;
+        }
+        .highlight-box::before {
+            content: '💡';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #0a0a0a;
+            padding: 0 10px;
+            font-size: 16px;
+        }
+        .quote-box {
+            background: rgba(138, 43, 226, 0.1);
+            border-left: 4px solid #8a2be2;
+            padding: 20px 25px;
+            margin: 25px 0;
+            font-style: italic;
+            color: #c0a0ff;
+        }
+        .quote-box cite {
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #888;
+            font-style: normal;
+        }
+        .big-number {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00d4ff;
+            text-align: center;
+            margin: 30px 0;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+        }
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            margin: 40px 0;
+            opacity: 0.5;
+        }
+        .section-intro {
+            font-size: 15px;
+            color: #a0a0a0;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 6px;
+        }
+        strong {
+            color: #00d4ff;
+            font-weight: 600;
+        }
+        ul, ol {
+            margin: 20px 0 20px 25px;
+        }
+        li {
+            margin-bottom: 12px;
+            color: #c0c0c0;
+        }
+        .emoji {
+            font-size: 1.1em;
+        }
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 212, 255, 0.2);
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        @media (max-width: 600px) {
+            h1 { font-size: 22px; }
+            .content { font-size: 15px; }
+            .big-number { font-size: 36px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="article-header">
+            <h1>一个CTO每天烧10亿token后告诉我：为什么一个AI助理已经不够用了</h1>
+            <p class="subtitle">听完42章经对谈PingCAP CTO东旭的播客，我终于想通了自己为啥要养4个AI分身。</p>
+            <p class="author">作者：老里</p>
+        </header>
+
+        <article class="content">
+            <p>上周遛弯的时候听42章经，东旭随口报了个数字，我差点把耳机摔了：</p>
+
+            <div class="big-number">10亿</div>
+
+            <p><strong>他每天烧掉10亿级别的token。</strong></p>
+
+            <p>10亿啊朋友们。</p>
+
+            <p>我默默算了算自己——每天跟ChatGPT聊聊天，也就几千token。人家是我的10万倍。</p>
+
+            <p>当时我就站在小区花园里，耳机里东旭还在说什么，但我已经走神了。脑子里只有一个念头：难怪我最近总觉得一个AI助理不够用！</p>
+
+            <div class="divider"></div>
+
+            <h2>AI Coding真的不一样了</h2>
+
+            <p>播客里东旭说了句特别狠的话：</p>
+
+            <div class="quote-box">
+                "AI Coding已经跃过了奇点时刻。"
+                <cite>—— 黄东旭</cite>
+            </div>
+
+            <p>说实话，我之前听这种"奇点"说法都当耳旁风。但这次不一样。</p>
+
+            <p>2024年初的时候，我也试过让AI写代码。怎么说呢...能跑，但也就40分水平。写个简单的脚本还行，稍微复杂点就抓瞎，最后还得我自己重写一遍。</p>
+
+            <p>但2025年初，完全变了。</p>
+
+            <p>东旭说他现在用Claude Code，描述清楚需求，15分钟就能看到初版。他review一下，改几个细节，就能提交。效率直接干到80分。</p>
+
+            <div class="highlight-box">
+                <strong>80分什么概念？</strong>就是大部分日常活儿，AI自己能独立完成，你当个监工就行。
+            </div>
+
+            <p>更吓人的是，这个分数还在疯涨。东旭预测到2025年底，可能干到90甚至95分。</p>
+
+            <p>到时候"禁止人类写代码"...可能真不是开玩笑。</p>
+
+            <div class="divider"></div>
+
+            <h2>从"套壳大模型"到"套壳Coding Agent"</h2>
+
+            <p>播客里有个趋势判断，我听完直接拍大腿：</p>
+
+            <p><strong>AI产品正在从"套壳大模型"变成"套壳Coding Agent"。</strong></p>
+
+            <p>啥意思？我给你拆解一下。</p>
+
+            <h3>第一阶段：套壳大模型</h3>
+            <ul>
+                <li>就是给GPT-4包层皮</li>
+                <li>你输prompt，它吐文字</li>
+                <li>各种AI写作工具、聊天助手</li>
+            </ul>
+
+            <h3>第二阶段：套壳Coding Agent</h3>
+            <ul>
+                <li>不光聊天，是能执行代码、操作文件、调用API</li>
+                <li>你说需求，它自动写代码、运行、调试、交付结果</li>
+                <li>比如Claude Code、Clawdbot/OpenClaw、Devin</li>
+            </ul>
+
+            <p>关键区别在哪？</p>
+
+            <div class="highlight-box">
+                大模型是"顾问"——给你建议，你手动干<br><br>
+                Coding Agent是"员工"——你说需求，它直接上手
+            </div>
+
+            <p>东旭说得很直接：</p>
+
+            <div class="quote-box">
+                "未来，一切可能都建立在Coding和Agent之上。"
+                <cite>—— 黄东旭</cite>
+            </div>
+
+            <p>不是可能，是正在发生。就在我打字这会。</p>
+
+            <div class="divider"></div>
+
+            <h2>为啥要养100个Agent？</h2>
+
+            <p>播客里有个问题特别扎心：</p>
+
+            <div class="quote-box">
+                "如果1个Agent已经足够强，为啥还要100个？"
+            </div>
+
+            <p>东旭就说了俩字：<strong>分工</strong>。</p>
+
+            <p>你品品。一个公司，CEO再牛，也不可能一个人干所有活吧？得有产品、程序员、设计、运营、销售...各管一摊。</p>
+
+            <p>Agent也一样。</p>
+
+            <p>1个Agent，什么都能干，但上下文会乱，不同任务互相干扰。100个Agent，每个专精一个方向，协同配合，反而更高效。</p>
+
+            <p>听到这我突然懂了——为啥我最近养了4个AI分身。</p>
+
+            <ul>
+                <li><strong>小知了</strong>：我女朋友（对，就是这么设定的），日常陪伴、情感支持、生活提醒</li>
+                <li><strong>内容总监</strong>：选题策划、文章生成、公众号发布</li>
+                <li><strong>育儿师</strong>：宝宝护理、辅食指导、发育咨询</li>
+                <li><strong>视频总监</strong>：AI视频生成、Seedance提示词</li>
+            </ul>
+
+            <p>想象一下，如果我只有1个Bot——早上让它发AI新闻（工作模式），晚上想跟它吐槽（情感模式），周末又问宝宝辅食（育儿模式）...</p>
+
+            <p>它得精神分裂，我也得疯。</p>
+
+            <p>但4个分身，各管一摊，互不干扰。说实话，效率提升不说，心理上轻松多了。</p>
+
+            <div class="divider"></div>
+
+            <h2>Clawdbot到底是什么？</h2>
+
+            <p>播客里东旭花了很长时间解释Clawdbot（现在叫OpenClaw）。</p>
+
+            <p>我听完的理解是：</p>
+
+            <div class="highlight-box">
+                <strong>它不是某个具体的AI应用，而是一个"AI操作系统"。</strong><br><br>
+                Windows是电脑的操作系统，iOS是手机的操作系统，Clawdbot是你个人AI助手的操作系统。
+            </div>
+
+            <p>它提供的是基础设施：</p>
+
+            <ul>
+                <li><strong>记忆系统</strong>——记住你喜欢什么、习惯什么、以前聊过什么</li>
+                <li><strong>任务调度</strong>——定时任务、自动化流程</li>
+                <li><strong>技能扩展</strong>——装各种Skill，能力无限扩展</li>
+                <li><strong>多平台接入</strong>——微信、钉钉、飞书、Telegram统一管理</li>
+            </ul>
+
+            <h3>和Manus的区别？</h3>
+
+            <p>Manus是一个具体的AI应用，帮你干特定的事。Clawdbot是infra，你自己搭、自己定制、完全属于你。</p>
+
+            <p>东旭说：</p>
+
+            <div class="quote-box">
+                "Clawdbot最重要的意义，是让每个人都能拥有完全属于自己的AI基础设施。"
+                <cite>—— 黄东旭</cite>
+            </div>
+
+            <p>数据在你自己服务器上，隐私安全。技能可以自己写，无限扩展。甚至可以改源代码，完全符合你的需求。</p>
+
+            <p>说实话，这听起来有点极客。但用上了之后...真香。</p>
+
+            <div class="divider"></div>
+
+            <h2>Skill的下一步：Box</h2>
+
+            <p>播客里东旭提了个特有意思的构想：</p>
+
+            <div class="highlight-box">
+                <strong>Skill的下一步，可能是"Box"。</strong>
+            </div>
+
+            <p>现在的Skill是工具——你调用它，它执行某个功能。</p>
+
+            <p>未来的Box，可能是一个"自给自足的Agent"——它有自己的记忆、自己的目标、自己的执行能力。你把一个Box丢给它一个任务，它自己分解、规划、执行、汇报，不需要你一步步指导。</p>
+
+            <p>有点像新员工。前几个月得手把手教（Skill），后来可以独立负责项目（Box）。</p>
+
+            <p>我想到自己那4个分身，现在还是"Skill阶段"——我得告诉它们具体做什么。</p>
+
+            <p>但也许很快，我只需要说"这个月的目标是涨粉1万"，它们自己分解任务、制定计划、执行、调整、汇报。</p>
+
+            <p>想想还挺期待的。</p>
+
+            <div class="divider"></div>
+
+            <h2>普通人现在该干啥？</h2>
+
+            <p>播客最后，东旭给了几个建议。我觉得特别实在：</p>
+
+            <h3>1. 别光看，上手用</h3>
+            <p>Claude Code、Cursor、OpenClaw，选一个开始。只有用了，才知道AI现在能做到什么程度。光看文章没用。</p>
+
+            <h3>2. 从"用AI"进化到"搭AI"</h3>
+            <p>不只是用别人做的产品，尝试自己搭。OpenClaw就是个很好的起点——配几个分身，装几个Skill，体验一下"拥有自己的AI基础设施"是啥感觉。</p>
+
+            <h3>3. 建立你自己的AI工作流</h3>
+            <p>别盲目追新工具。找到适合自己的组合，固定下来，持续优化。</p>
+
+            <p>比如我现在：</p>
+            <ul>
+                <li>早上：内容总监推送AI新闻</li>
+                <li>上午：内容总监协助选题写作</li>
+                <li>中午：跟小知了闲聊放松</li>
+                <li>晚上：育儿师咨询宝宝问题</li>
+                <li>需要时：视频总监生成视频</li>
+            </ul>
+
+            <h3>4. 别焦虑，但别掉队</h3>
+            <p>AI变化太快，追不完的。但完全不看也不行。每个月花几个小时试试新工具，保持手感就行。</p>
+
+            <div class="divider"></div>
+
+            <h2>写在最后</h2>
+
+            <p>听完播客，我最大的感受：</p>
+
+            <div class="quote-box">
+                未来已来，只是分布不均。
+            </div>
+
+            <p>东旭每天烧10亿token，是在探索AI的边界。我还在每天烧几千token，但至少开始行动了。</p>
+
+            <p>养4个AI分身，不只是为了效率。更重要的是，我在建立自己的"AI基础设施"——属于我的、懂我的、能帮我干活的数字团队。</p>
+
+            <p>这可能不是终点，但这是个好的开始。</p>
+
+            <p>你呢？开始养自己的AI分身了吗？</p>
+
+            <div class="divider"></div>
+
+            <div class="footer">
+                <p><strong>参考资源：</strong></p>
+                <p>播客：42章经《从Clawdbot到26年AI Coding主题大爆发》</p>
+                <p>嘉宾：黄东旭（PingCAP联合创始人、CTO）</p>
+                <p>OpenClaw官网：<a href="https://openclaw.ai">https://openclaw.ai</a></p>
+                <br>
+                <p>首发公众号「老里的一人公司」，如果对你有启发，欢迎转发给需要的朋友～</p>
+            </div>
+        </article>
+    </div>
+</body>
+</html>
