@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "profiles": {
+    "kimi-coding:default": {
+      "type": "api_key",
+      "provider": "kimi-coding",
+      "key": "sk-kimi-4w4BH0sxxVbnWZNGfVM3qVM9uukhAnR36BXbeCXYIxaXelTEFKdsT4HKNVxpkfyG"
+    },
+    "minimax:default": {
+      "type": "api_key",
+      "provider": "minimax",
+      "key": "sk-cp-s5pflCs4u3Wj1JRI_Sg7_5YaJytr-xTfuWf59-c9sQbQiTlmQYyFGEH-GiGckinMyFNGPWsFfptwoCxH3m0KIRrYPA1SeSHekHkYWJV9zpGKcgcGBFFSArE"
+    }
+  },
+  "lastGood": {
+    "kimi-coding": "kimi-coding:default",
+    "minimax": "minimax:default"
+  },
+  "usageStats": {
+    "kimi-coding:default": {
+      "lastUsed": 1771454240226,
+      "errorCount": 0,
+      "lastFailureAt": 1771316079827
+    },
+    "minimax:default": {
+      "lastUsed": 1771011587455,
+      "errorCount": 0
+    }
+  }
+}

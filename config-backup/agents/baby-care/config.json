@@ -1,0 +1,18 @@
+{
+  "channel": "telegram",
+  "gateway": {
+    "port": 18794
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true,
+        "botToken": "你的育儿师_Bot_Token",
+        "chatId": "你的Telegram_ID",
+        "allowedUsers": ["你的Telegram_ID"],
+        "polling": true,
+        "pollingInterval": 5000
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "channel": "telegram",
+  "gateway": {
+    "port": 18790
+  },
+  "plugins": {
+    "entries": {
+      "telegram": {
+        "enabled": true,
+        "botToken": "8502623699:AAHvcI6KzV9aIOrSvRk_jR9mIdw_U9ltbvU",
+        "chatId": "8404273573",
+        "allowedUsers": ["8404273573"],
+        "polling": true,
+        "pollingInterval": 5000
+      }
+    }
+  }
+}
