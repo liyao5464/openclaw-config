@@ -25,6 +25,19 @@
 - 结尾：固定"感恩三连"模板
 - 禁止：书面腔、被动句、AI味、说教
 
+## 知识库索引（按需加载）
+
+> 详细内容见 `memory/INDEX.md`，启动时扫描导航，按需读子文件。
+
+| 类型 | 路径 | 说明 |
+|------|------|------|
+| 人物画像 | `memory/people/laoli-profile.md` | 老里基本信息 |
+| 用户偏好 | `memory/preferences/laoli-preferences.md` | 写作风格+禁止项 |
+| 发布经验 | `memory/lessons/wechat-publishing.md` | 流程+踩坑 |
+| 写作方法论 | `memory/lessons/writing-methodology.md` | 结构+标题公式 |
+| 记忆架构 | `memory/lessons/openclaw-memory-arch.md` | Token优化 |
+| 双账号决策 | `memory/decisions/2026-02-14-dual-accounts.md` | 账号配置 |
+
 ## 冷存储索引（用到再读）
 
 | 内容 | 路径 |

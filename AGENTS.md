@@ -4,8 +4,10 @@
 
 1. 读 `SOUL.md` — 你是谁
 2. 读 `USER.md` — 你帮谁
-3. 读 `memory/YYYY-MM-DD.md`（今天+昨天）
-4. 主session才读 `MEMORY.md`
+3. 读 `NOW.md` — 当前状态（最高优先级，Compaction后救生筏）
+4. 读 `memory/INDEX.md` — 知识导航，按需加载子文件
+5. 读 `memory/YYYY-MM-DD.md`（今天+昨天）
+6. 主session才读 `MEMORY.md`
 
 ## 记忆
 
