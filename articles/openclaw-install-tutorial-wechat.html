@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<div style="font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:17px;line-height:2;color:#333;max-width:680px;margin:0 auto;padding:32px 20px;background:#fff">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">大家好，我是老里。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">最近有不少朋友看到我天天在用OpenClaw，问我这玩意儿到底怎么装的，怎么用的。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">说实话，我挺理解的。因为我当初也是一脸懵。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我纯文科生，一行代码都不会写。第一次听到&quot;部署服务器&quot;这几个字的时候，我脑子里浮现的画面是一堆黑底绿字的屏幕在疯狂滚动。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">但后来我发现，其实没那么难。全程有AI带着你，像个提线木偶一样，AI说改哪行我就改哪行。2小时后，我居然搞定了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">所以今天这篇文章，我会用最直白的话，告诉你我怎么装的，中间踩了哪些坑。你跟着做，应该也能成。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第一步：买服务器，我就差点翻车</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">朋友跟我说&quot;买个海外服务器就行&quot;。我问他轻量应用服务器够吗，他说够。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我打开腾讯云，顺手选了上海节点。心想国内服务器肯定更稳啊。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">装到一半，飞书的事件订阅死活配不通。我问AI怎么回事，AI说服务器必须选海外的，香港新加坡日本都行，就是不能选大陆。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我当场就把上海那台删了，重新买了新加坡节点。白白浪费1小时。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">所以记住：服务器地区选香港/新加坡/日本，别选大陆。别问我怎么知道的。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第二步：配置模型，Kimi和MiniMax轮番坑我</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">初始化配置很顺利，<code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">openclaw onboard --install-daemon</code>，然后填API Key、选模型。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我甚至有点飘——原来这就是传说中的&quot;部署&quot;啊，也不过如此嘛。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">然后报应来了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">配置模型的时候，我选了kimi2.5，结果一直报错。我检查了三遍API Key，没错啊。AI让我看文档，才发现——<strong style="color:#9b4f2e;font-weight:700">Kimi要选coding版本</strong>，普通版不行。</p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">kimi-coding/k2p5 ✅</li>
+<li style="margin:.6em 0;color:#333">kimi/moonshot-v1 ❌</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我当时就服了。谁能想到一个模型还分coding和非coding？我就想让AI写点东西，又不是让它去考程序员资格证。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">还有MiniMax更离谱。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我在minimaxi.com申请的Key，配进去报错&quot;401 token is unusable&quot;。研究了半天才明白——MiniMax国内版和海外版是两套系统，Key不能混用。国内版用<code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">api.minimaxi.com</code>，海外版用<code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">api.minimax.chat</code>。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我当时真想骂人。你们一家公司搞两套系统，不能通用，脑子有坑吗？</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第三步：飞书配置，权限少打一个勾，机器人就是哑巴</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">飞书这部分是我花时间最长的。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">创建应用、获取App ID和App Secret都很简单。直到配置权限。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我按照教程在&quot;权限管理&quot;里导入了JSON，心想这下总该行了吧。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">结果飞书接入后，机器人死活不回复。我发了十条消息，它跟死了一样。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">排查了半小时，才发现——我漏开了两个权限：</p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333"><code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">im:message.p2p_msg:readonly</code>（接收私聊消息）</li>
+<li style="margin:.6em 0;color:#333"><code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">im:message.group_at_msg:readonly</code>（接收群聊@消息）</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">就这两个勾没打，机器人就成了哑巴。我当时差点把键盘砸了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">还有个坑：</strong> 事件订阅那里，别选HTTP回调，那个要填URL和Token，复杂得要死。直接选<strong style="color:#9b4f2e;font-weight:700">长连接</strong>，最简单。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第四步：Telegram接入，验证码是玄学</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">如果你还要接Telegram，做好心理准备。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">iPhone用户需要美区Apple ID + 境外手机号。我试了3个国内手机号，2个收不到验证码。最后一个居然收到了，我都怀疑运气用光了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">安卓用户相对容易，但也要有梯子。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">在Telegram里搜<code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">@BotFather</code>，发送<code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">/newbot</code>，按提示走。拿到Token之后配置进去。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我当时配置完，在Telegram里喊了声&quot;在吗&quot;，它秒回。那种成就感，比买到打折球鞋还爽。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第五步：插件冲突，装两遍会打架</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我干了件蠢事。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">先执行了<code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">openclaw plugins add feishu</code>，后来又手贱<code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">npm install @larksuiteoapi/node-sdk</code>。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">然后每次启动都报错：<code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">Config warnings: plugin feishu: duplicate plugin id detected</code></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">解决方法是删掉全局那个：</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">sudo rm -rf /root/.nvm/versions/node/v24.7.0/lib/node_modules/openclaw/extensions/feishu</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我当时就想，为什么软件不能聪明点，检测到重复就自动处理？非要我手动删？</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第六步：重启生效，别忘了切模型</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">配置完成后，重启网关：</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">openclaw gateway restart</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">然后在飞书里对机器人说：</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">/model kimi-coding/k2p5</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">这一步很重要。</strong> 默认模型是Claude，如果你没配官方API，直接对话会报错。我当时忘了切模型，还以为前面哪里配错了，又检查了一遍。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">记住三个救命命令，90%的问题都能解决：</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">openclaw gateway status  # 查看状态
+openclaw gateway restart # 重启网关
+openclaw doctor --fix    # 自动修复</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">看到绿色的<code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">RPC probe: ok</code>，说明一切正常。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">现在我有7个AI员工</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">说实话，我现在的用法还挺原始的。</p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333"><strong style="color:#9b4f2e;font-weight:700">主号</strong>：统筹全局，日常沟通</li>
+<li style="margin:.6em 0;color:#333"><strong style="color:#9b4f2e;font-weight:700">内容总监</strong>：审核内容，公众号排版</li>
+<li style="margin:.6em 0;color:#333"><strong style="color:#9b4f2e;font-weight:700">育儿师</strong>：育儿知识，宝宝成长记录</li>
+<li style="margin:.6em 0;color:#333"><strong style="color:#9b4f2e;font-weight:700">视频总监</strong>：视频脚本，分镜策划</li>
+<li style="margin:.6em 0;color:#333"><strong style="color:#9b4f2e;font-weight:700">李笔</strong>：X/Twitter内容创作</li>
+<li style="margin:.6em 0;color:#333"><strong style="color:#9b4f2e;font-weight:700">李微</strong>：微博/小红书内容</li>
+<li style="margin:.6em 0;color:#333"><strong style="color:#9b4f2e;font-weight:700">AI华佗</strong>：健康咨询，育儿医学知识</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">每次打开飞书看到&quot;开发者小助手&quot;在线，我都有种&quot;我也行&quot;的爽感。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">最意外的是它们真的不串台。我让内容总监审文章，它不知道我昨天跟育儿师聊了什么。这种隔离感，比Claude的Projects强太多了。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">技术门槛这个东西，有时候是被我们自己想象出来的。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">就像你辛辛苦苦学了半天编程，结果发现AI可以帮你写完所有代码。你会觉得自己之前的焦虑很傻吗？会的。但你能怎么办呢？只能接受现实，然后想办法利用这些工具去做更多的事。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我不会写代码，但我会复制粘贴，会问AI，会在报错的时候把错误信息丢给搜索引擎。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">2小时前我觉得OpenClaw跟我没关系。现在我觉得，它可能是今年最值回票价的东西。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">反正服务器也不贵，最坏的结果就是浪费2小时。但万一成了呢？</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">以上，既然看到这里了，如果觉得不错，随手点个赞、在看、转发三连吧，如果想第一时间收到推送，也可以给我个星标⭐️～感谢你看我的文章，我们，下次再见。</p>
+
+</div>
+</body>
+</html>
