@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<div style="font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:17px;line-height:2;color:#333;max-width:680px;margin:0 auto;padding:32px 20px;background:#fff">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">大家好，我是老里。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">今天有个读者给我发消息。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">说他的OpenClaw崩了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">调好的工作流、几个精心配置的Agent——全没了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我看完，后背一凉。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">因为我亲身经历过。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">刚开始用OpenClaw那会儿，我花了好几天把龙虾调教好。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">写作风格、发布流程、Agent分工……一点一点喂进去，终于顺手了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">然后有一天，龙虾把自己&quot;玩死了&quot;。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">具体原因到现在都没搞清楚。可能是它自己改了什么配置，可能是版本冲突，也可能就是单纯的抽风。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">怎么都找不到原因。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">那种感觉，就像你花了一个月驯好一匹马，早上起来发现它不见了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">从那以后，我开始认真对待备份这件事。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">所以今天不写别的。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">就教你怎么给OpenClaw做自动备份。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">两步，真的只要两步。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第一步：搞一个GitHub私有仓库 + PAT</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">打开 github.com，右上角头像 → Settings。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">拉到最底部，找到 Developer settings。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">左边点 Personal access tokens → Tokens (classic)。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">新建一个：</p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">Note 随便填，比如&quot;OpenClaw备份&quot;</li>
+<li style="margin:.6em 0;color:#333">Expiration 选90天（别选永久，安全）</li>
+<li style="margin:.6em 0;color:#333">Scopes <strong style="color:#9b4f2e;font-weight:700">只勾 repo</strong>，其他不用管</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">生成之后，<strong style="color:#9b4f2e;font-weight:700">立刻复制</strong>。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这个 token 只显示一次，关掉页面就没了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">复制完，回到 GitHub 首页，新建一个私有仓库（Private）。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">记下仓库地址，类似这样：</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">https://github.com/你的用户名/你的仓库名</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">第一步完成。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第二步：告诉OpenClaw装好自动备份</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">回到你的OpenClaw对话框，发这句话：</p>
+<blockquote style="margin:1.5em 0;padding:14px 20px;background:#fdf6f2;border-left:4px solid #9b4f2e;border-radius:0 8px 8px 0;color:#555"><p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">安装gitclaw用于在我的私有github库地址：<a href="https://github.com/你的用户名/你的仓库名" style="color:#9b4f2e;text-decoration:none">https://github.com/你的用户名/你的仓库名</a> Use this PAT: ghp_你的token 创建 .gitignore 排除 .env, tokens等敏感文件</p>
+</blockquote>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">它会自动帮你配好。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">配完之后问它一句：&quot;gitclaw已安装吗？&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">确认没问题，搞定。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">以后你的所有对话记录、Agent配置、工作流文件，都会<strong style="color:#9b4f2e;font-weight:700">每小时自动备份</strong>到这个私有仓库。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">有改动才推，没改动不动。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">安静，省心，不烧流量。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">如果真的不幸崩了，怎么恢复？</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">更简单。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">重新装好OpenClaw之后，一行命令：</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">git clone https://github.com/你的用户名/你的仓库名.git ~/.openclaw/workspace</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">全部回来。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">就这么快。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">方法二：腾讯云快照回滚（救了我好几次）</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">如果你的OpenClaw跑在腾讯云服务器上，还有一个更暴力的方法。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">腾讯云有个功能叫&quot;快照&quot;。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">简单说就是给整台服务器拍一张照片，系统、配置、文件全部定格在那一刻。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">崩了？直接回滚到上一张快照。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不用找原因，不用排查问题，直接穿越回去。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我自己用这个方法救过好几次场。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">怎么操作：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">登录腾讯云控制台 → 云服务器 → 找到你的实例 → 左边菜单&quot;快照&quot; → 创建快照。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">建议定期更新一次快照，比如每次大改配置之前先拍一张。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">崩了的时候，找到最近的快照，点&quot;回滚&quot;，等几分钟，回来了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">注意：</strong> 快照回滚会把整台服务器恢复到拍照时的状态，快照之后的改动会丢失。所以两个方法最好配合用——GitHub备份保文件，快照保系统环境。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我知道很多人觉得备份这件事&quot;以后再说&quot;。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我以前也这样。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">直到那次差点凉了，才意识到：</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你花了多少时间调教你的AI助手？</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">教它你的写作风格、你的工作习惯、你踩过的坑、你喜欢的表达方式……</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这些东西，值多少钱？</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">一个GitHub私有仓库，免费。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">配置一次，永久自动备份。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">别等崩了再后悔。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">以上，既然看到这里了，如果觉得不错，随手点个赞、在看、转发三连吧，如果想第一时间收到推送，也可以给我个星标⭐️～感谢你看我的文章，我们，下次再见。</p>
+
+</div>
+</body>
+</html>
