@@ -1,1 +1,12 @@
 openclaw-config-update-20260218.zip
+
+# OpenClaw敏感文件
+.baoyu-skills/
+.baoyu-skills/.env
+.baoyu-skills/access_token.json
+.fei*.json
+.access_token.json
+*.log
+node_modules/
+.DS_Store
+*.tmp
