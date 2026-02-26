@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<div style="font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:17px;line-height:2;color:#333;max-width:680px;margin:0 auto;padding:32px 20px;background:#fff">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">大家好，我是老里。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我第一次装上 OpenClaw 的时候，完全不知道该怎么用。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">界面打开了，命令行跑起来了，然后……就没有然后了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我盯着屏幕看了五分钟，关掉了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这种情况持续了将近两周。每次打开，每次不知道从哪里开始，每次关掉。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">直到有一天，我终于搞清楚了一件事：<strong style="color:#9b4f2e;font-weight:700">OpenClaw 不是聊天机器人，它是一个需要你&quot;配置&quot;才能用的 AI 助理。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这一句话，让我从&quot;装上了不会用&quot;变成了&quot;真正帮我干活&quot;。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">今天这篇文章，就是我这三个月的完整上手记录。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">先说清楚：它到底是什么</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">很多人第一次听说 OpenClaw，以为它是另一个 ChatGPT。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不是的。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">ChatGPT 是&quot;会说话的工具&quot;，OpenClaw 是&quot;会做事的助理&quot;。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">举个例子：</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你问 ChatGPT：&quot;帮我把这篇文章发到公众号&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">ChatGPT：&quot;好的，你可以这样操作：1. 打开公众号后台……&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你问 OpenClaw 同样的问题：</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw：直接调用 API，把文章转成 HTML，上传封面图，推到草稿箱。&quot;已完成，草稿已推送，请去后台确认发布。&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">这就是区别。一个给你建议，一个帮你执行。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 是开源的，部署在你自己的服务器上，数据不上传云端，你完全掌控。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第一关：安装（别被命令行吓到）</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 需要用命令行安装，但其实不难。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">环境要求：</strong></p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">Node.js v18 或以上</li>
+<li style="margin:.6em 0;color:#333">一个 AI 模型的 API Key（Claude 或 GPT 都行）</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">检查你的 Node.js 版本：</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">node --version</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">如果显示 v18 以上，直接下一步。如果没有或版本太低，去 nodejs.org 下载安装。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">安装 OpenClaw：</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">npm install -g openclaw</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">初始化配置：</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">openclaw onboard</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这个向导会问你几个问题：用哪个 AI 模型、API Key 是什么、用哪个消息平台。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">我的建议：</strong></p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">模型选 Claude（效果最好）</li>
+<li style="margin:.6em 0;color:#333">消息平台选 Telegram（最稳定）</li>
+<li style="margin:.6em 0;color:#333">权限先选沙盒模式（安全）</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">✅ 完成标准：运行 <code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">openclaw --version</code> 能看到版本号</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第二关：连上 Telegram（让它能跟你说话）</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">装好之后，你需要给 OpenClaw 一个&quot;嘴巴&quot;——也就是消息平台。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我用的是 Telegram，配置最简单。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">步骤：</strong></p>
+<ol style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">在 Telegram 搜索 <code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">@BotFather</code></li>
+<li style="margin:.6em 0;color:#333">发送 <code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">/newbot</code>，按提示创建一个机器人</li>
+<li style="margin:.6em 0;color:#333">拿到 Bot Token（一串字母数字）</li>
+<li style="margin:.6em 0;color:#333">在 OpenClaw 配置里填入这个 Token</li>
+</ol>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">配置完之后，在 Telegram 搜索你刚创建的机器人，发一条消息，它就会回复你了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">我踩过的坑：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">第一次配置，我把 Bot Token 填错了一个字符，死活连不上。检查了半小时才发现。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">所以建议直接复制粘贴，不要手打。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">✅ 完成标准：在 Telegram 给机器人发消息，它能正常回复</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第三关：让它认识你（最关键的一步）</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这一步是大多数人跳过、然后抱怨&quot;AI 不好用&quot;的根本原因。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 刚装好的时候，它什么都不知道。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">它不知道你是谁，不知道你的工作是什么，不知道你喜欢什么风格，不知道你想让它怎么说话。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">你需要给它写两个文件：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">SOUL.md — 它的人设</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">告诉它：它是谁，怎么说话，什么风格。</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace"># SOUL.md
+
+你是老里的内容助理。
+
+## 工作风格
+- 说话简洁，不废话
+- 遇到问题直接给方案，不绕弯子
+- 写文章时保持口语化，有人情味
+
+## 禁止
+- 不要用"首先、其次、最后"这种书面腔
+- 不要每句话都加感叹号</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">USER.md — 你是谁</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">告诉它：你叫什么，做什么，有什么偏好。</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace"># USER.md
+
+- 名字：老里
+- 职业：AI科普博主
+- 受众：普通AI爱好者、中小学教师
+- 时区：GMT+8
+- 偏好：文章要有个人经历，不要纯干货堆砌</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这两个文件放在 <code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">~/.openclaw/workspace/</code> 目录下。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">配置前后的区别：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">配置前，你问它&quot;帮我写一篇文章&quot;，它给你一篇标准的、没有灵魂的文章。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">配置后，它知道你的受众是谁，知道你的风格是什么，写出来的东西至少有七八成是你的味道。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">✅ 完成标准：给它发一条消息，感觉它&quot;认识你&quot;了</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第四关：让它主动干活（定时任务）</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">到这一步，大多数人的用法还是&quot;我问它，它回答&quot;。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">但 OpenClaw 真正厉害的地方是：<strong style="color:#9b4f2e;font-weight:700">你不问它，它也在后台跑。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这靠的是定时任务（Cron Jobs）。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">我设置的几个定时任务：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">每天早上7点发早报</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">每天早上7点，整理今天的天气、日程、AI领域最新动态，发给我。</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">每周五下午提醒选题</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">每周五下午3点，提醒我确认下周的文章选题。</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">怎么设置：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">直接用自然语言告诉它：</p>
+<blockquote style="margin:1.5em 0;padding:14px 20px;background:#fdf6f2;border-left:4px solid #9b4f2e;border-radius:0 8px 8px 0;color:#555"><p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;帮我设置一个定时任务，每天早上7点发给我今天的天气和日程&quot;</p>
+</blockquote>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">它会自动创建，不需要你写代码。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">我的真实感受：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">设置早报之前，我每天早上起来第一件事是刷手机，刷完脑子乱成一锅粥。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">设置之后，7点准时收到一条整理好的消息，5分钟搞清楚今天要干什么。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这个改变比我想象的大。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">✅ 完成标准：创建至少1个定时任务，验证它能正常触发</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第五关：安装技能扩展（Skills）</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 有一个技能市场，可以安装各种扩展功能。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">对内容创作者来说，最实用的几个：</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">天气查询</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">openclaw skills install weather</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">网页内容提取</strong>（抓取文章、整理资料）</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">openclaw skills install web-reader</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">图片生成</strong>（封面图、配图）
+根据你接入的图像 API 配置</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">安装完之后怎么用：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">直接用自然语言告诉它你要做什么，它会自动调用对应的技能。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">比如：&quot;帮我查一下今天北京的天气&quot;，它会自动用天气技能查询，不需要你指定用哪个技能。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">✅ 完成标准：安装至少2个技能并测试成功</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第六关：组建你的AI团队（多Agent）</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这是我觉得 OpenClaw 最酷的功能。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">一个 OpenClaw 实例，可以运行多个 Agent，每个有自己的人设、记忆和工作区。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">我现在的团队配置：</strong></p>
+<table style="width:100%;border-collapse:collapse;margin:1.5em 0"><thead><tr><th style="background:#9b4f2e;color:#fff;padding:12px 16px;text-align:left;font-size:.95em">角色</th><th style="background:#9b4f2e;color:#fff;padding:12px 16px;text-align:left;font-size:.95em">职责</th></tr>
+</thead><tbody><tr><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">私人助理</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">统筹全局，日常沟通</td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">内容总监</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">文章审核、公众号发布</td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">李笔</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">X/Twitter 内容创作</td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">李微</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">微博/小红书内容</td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">AI华佗</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">健康咨询</td></tr>
+</tbody></table>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">每个 Agent 都有独立的 Telegram 机器人，我想找谁就找谁。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">怎么配置：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">在 <code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">~/.openclaw/openclaw.json</code> 里定义 Agent 列表：</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">{
+  "agents": {
+    "list": [
+      { "id": "main", "name": "私人助理", "workspace": "/root/.openclaw/workspace" },
+      { "id": "director", "name": "内容总监", "workspace": "/root/.openclaw/workspace-director" }
+    ]
+  }
+}</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">每个 Agent 有自己的 workspace，里面放各自的 SOUL.md 和记忆文件，互不干扰。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">Agent 之间还能互相协作：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我告诉私人助理&quot;帮我把这篇文章发到公众号&quot;，它会自动联系内容总监，内容总监负责排版和发布，完成后汇报给我。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">我的真实感受：</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">以前一个人做所有事，现在感觉真的有一个小团队在帮我。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不是比喻，是真实的工作流变化。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">✅ 完成标准：配置至少2个 Agent，能分别对话</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">我现在的完整工作流</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">说了这么多，来看看我实际是怎么用的。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">每天早上：</strong></p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">7点收到早报（自动）</li>
+<li style="margin:.6em 0;color:#333">看完确认今天的重点</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">写文章时：</strong></p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">告诉私人助理选题</li>
+<li style="margin:.6em 0;color:#333">它生成初稿</li>
+<li style="margin:.6em 0;color:#333">我修改，确认</li>
+<li style="margin:.6em 0;color:#333">告诉它&quot;发实验室&quot;</li>
+<li style="margin:.6em 0;color:#333">内容总监自动转HTML、生封面图、推草稿箱</li>
+<li style="margin:.6em 0;color:#333">我去后台点发布</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">整个流程，我自己花的时间不超过30分钟。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">其余的全部交出去了。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">常见问题</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">Q：API 费用大概多少？</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">轻度使用（每天10-20次对话）：约 $5-10/月</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">内容创作者（每天写稿+定时任务）：约 $20-30/月</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">省钱技巧：日常任务用便宜的模型（MiniMax、Kimi），重要任务才用 Claude。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">Q：需要有服务器吗？</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不一定。本地电脑也能跑，但服务器的好处是24小时在线，定时任务不会因为电脑关机而中断。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我用的是腾讯云轻量应用服务器，最便宜的配置够用，一个月几十块钱。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">Q：技术要求高吗？</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">会用命令行就够了。不需要会编程。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">配置文件是 JSON 格式，看起来有点吓人，但其实改起来很简单，而且可以直接让 OpenClaw 帮你改。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">写在最后</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我花了三个月才真正把 OpenClaw 用起来。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">中间放弃过，觉得太复杂；重新捡起来，觉得值得。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">它不是那种装上就能用的工具，它是那种你花时间配置好之后，会真正改变你工作方式的系统。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这个账号，就是我记录这件事的地方。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">每一篇都是真实经历，有踩坑有收获，有可以直接抄的配置，也有我走过的弯路。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">如果你也在折腾这些，欢迎一起。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">以上，既然看到这里了，如果觉得不错，随手点个赞、在看、转发三连吧，如果想第一时间收到推送，也可以给我个星标⭐️～感谢你看我的文章，我们，下次再见。</p>
+
+</div>
+</body>
+</html>

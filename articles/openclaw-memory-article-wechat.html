@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<div style="font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:17px;line-height:2;color:#333;max-width:680px;margin:0 auto;padding:32px 20px;background:#fff">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><em style="color:#9b4f2e;font-style:normal">它记得住 200 封邮件，却记不住我说过的话。</em></p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">上周发生了一件事，我现在想起来还后背发凉。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我在 Telegram 里疯狂喊&quot;STOP！别删！&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 像是聋了一样，照删不误。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">3 分钟。200 多封邮件。没了。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你们能想象那种感觉吗？</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">那条&quot;等我确认再执行&quot;的指令，在上下文压缩的时候，被弄丢了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">就像你明明交代了同事&quot;重要文件别乱动&quot;，结果他转头就给你删了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不是他不听话，是<strong style="color:#9b4f2e;font-weight:700">他根本没记住</strong>。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">你有没有遇到过这种情况？</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你跟 OpenClaw 说了八百遍：</p>
+<blockquote style="margin:1.5em 0;padding:14px 20px;background:#fdf6f2;border-left:4px solid #9b4f2e;border-radius:0 8px 8px 0;color:#555"><p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;帮我回邮件时用中文&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;重要文件删除前要问我&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;我叫老里，不是什么其他名字&quot;</p>
+</blockquote>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">它点头如捣蒜，态度诚恳。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">第二天：</p>
+<blockquote style="margin:1.5em 0;padding:14px 20px;background:#fdf6f2;border-left:4px solid #9b4f2e;border-radius:0 8px 8px 0;color:#555"><p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;根据您的要求，我用英文回复了邮件~&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;我已经删除了那个文件夹~&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;好的老王，我来帮你处理~&quot;</p>
+</blockquote>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">它失忆了。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你明明说过，它明明答应过，但它就是记不住。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这不是它笨，是它的&quot;记忆&quot;从一开始就是个骗局。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">问题的根子：记忆住在&quot;别人家&quot;</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 的记忆住在对话上下文里。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你说的话、它做的事，都在这个 context window 里。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">听起来没问题？</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">但问题大了——</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">这个&quot;家&quot;会塌。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你的对话太长，邮件太多，context 满了，它就得&quot;压缩&quot;。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">压缩的时候，谁重要谁不重要？它自己判断。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">那条&quot;删除前确认&quot;的指令，可能就被当垃圾扔了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">就像你脑子里记了一件事，太多了，装不下，第二天忘了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不是故意的，是真的记不住。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">我试过的方案</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">社区里其实已经有人注意到这个问题了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">ClawVault</strong>：用 Markdown 文件存，固定 17 个类别人能直接打开改。不错，但没分层。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">openclaw-memory</strong>：SQLite + 向量数据库，跨 Agent 共享。但没有分类，容易堆成垃圾堆。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">Memory Guardian</strong>：专门防止 Agent 忘记查记忆。但本身不会搜索。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">各有各的好，但各有各的缺陷。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">真正管用的方案</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">直到我遇到了 <strong style="color:#9b4f2e;font-weight:700">ePro-Memory</strong>。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">一句话解释：<strong style="color:#9b4f2e;font-weight:700">它给 OpenClaw 装了个独立于对话的&quot;第二大脑&quot;。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这个&quot;第二大脑&quot;有三个杀手锏：</p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">1. 记忆分六类</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不是一锅粥，什么都往里塞。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">ePro 把记忆分成六类：</p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">用户个人信息</li>
+<li style="margin:.6em 0;color:#333">用户偏好习惯</li>
+<li style="margin:.6em 0;color:#333">用户相关事物</li>
+<li style="margin:.6em 0;color:#333">发生过的事</li>
+<li style="margin:.6em 0;color:#333">AI 工作经验（案例）</li>
+<li style="margin:.6em 0;color:#333">通用方法论</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">就像你的电脑里有&quot;文档&quot;&quot;下载&quot;&quot;桌面&quot;，分类放，找起来才快。</p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">2. 三层结构，不丢信息不费钱</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">L0：一句话摘要（像书名）
+L1：结构化概要（像目录）
+L2：完整记录（像全文）</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 工作时默认只看 L0。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">觉得相关才翻 L1。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">真正需要细节才读 L2。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">省 token，省钱。</strong></p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">3. 分类内去重</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你告诉它&quot;回复用中文&quot;——偏好记忆。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">你告诉它&quot;上次用英文回复被骂了&quot;——事件记忆。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">两条都跟&quot;语言&quot;有关，但性质完全不同。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">以前的方案会把它俩合并，乱套。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">ePro 只在同类别内去重，井水不犯河水。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">最关键的一点</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">这条&quot;记忆&quot;不受上下文压缩影响。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">下次启动任务时，ePro 自动把偏好注入进去。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">指令不丢，邮件不死。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">字节跳动认证过</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">其实 ePro 的核心算法来自字节跳动的 <strong style="color:#9b4f2e;font-weight:700">OpenViking</strong>。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">就是那个在字节内部打磨了无数次的 Agent 记忆分类体系。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不是拍脑袋想的，是真刀真枪在大量对话中验证过的。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">韭二哥把它从字节拆出来，做了开源版本：</p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">Python 换成 TypeScript</li>
+<li style="margin:.6em 0;color:#333">向量数据库换成 LanceDB（本地运行，数据不跑路）</li>
+<li style="margin:.6em 0;color:#333">加了安全锁、防注入、113 个测试</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">不终极，但免费。</strong></p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">我用了两周的感受</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">说实话，之前我被 OpenClaw 的&quot;金鱼记忆&quot;折磨得不行。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">每次都得重新解释：</p>
+<blockquote style="margin:1.5em 0;padding:14px 20px;background:#fdf6f2;border-left:4px solid #9b4f2e;border-radius:0 8px 8px 0;color:#555"><p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;我是老里&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;以后回邮件用中文&quot;</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;删除文件前先问我&quot;</p>
+</blockquote>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">装了 ePro 之后，明显不一样了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">它真的&quot;记住&quot;了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不是那种&quot;啊我知道了&quot;的假装记住，是真的写进&quot;第二大脑&quot;里了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">重启会话，它还记得。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">那一刻，我终于体会到什么叫&quot;AI 成熟了&quot;。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">怎么装</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">GitHub 搜 <strong style="color:#9b4f2e;font-weight:700">ePro Memory</strong>。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">Apache 2.0 协议，开源免费。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">受够了每天重新教 OpenClaw &quot;我是谁&quot;的朋友，可以去看看。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><em style="color:#9b4f2e;font-style:normal">转发给你身边那个每天都在喊&quot;你怎么又忘了&quot;的朋友。</em></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><em style="color:#9b4f2e;font-style:normal">让他也尝尝&quot;第二大脑&quot;的香。</em></p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">参考来源：</strong></p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">ePro Memory GitHub：<a href="https://github.com/lijiuer92/epro-memory" style="color:#9b4f2e;text-decoration:none">https://github.com/lijiuer92/epro-memory</a></li>
+<li style="margin:.6em 0;color:#333">字节跳动 OpenViking 设计</li>
+<li style="margin:.6em 0;color:#333">Summer Yue 事件：OpenClaw 社区真实案例</li>
+</ul>
+
+</div>
+</body>
+</html>
