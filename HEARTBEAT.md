@@ -29,7 +29,8 @@
 事件：晚上8点选题提醒
 
 ## 公众号发布偏好
-- **主号默认主题**：Wechat 主流风（红棕色标题下划线，全内联样式）`node scripts/md2html-pro.js article.md wechat`
-- **实验室默认主题**：Wechat 主流风（红棕色标题下划线，全内联样式）`node scripts/md2html-pro.js article.md wechat`
+- **主号默认主题**：Wechat 主流风（红棕色标题下划线，全内联样式）
+- **实验室默认主题**：Wechat 主流风（红棕色标题下划线，全内联样式）
+- HTML转换由发布脚本自动处理
 - **设置时间**：2026-02-25
 - **重要**：主号和实验室统一用 md2html-pro.js（全内联样式），微信不会剥掉样式

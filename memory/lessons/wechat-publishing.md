@@ -18,9 +18,7 @@ tags: [wechat, publishing, workflow]
 5. 写初稿 → 配图 → 转HTML → 推草稿 → 老里确认发布
 
 ## 转HTML命令
-```bash
-node scripts/md2html-pro.js article.md wechat
-```
+HTML转换由发布脚本自动处理，无需手动转换。
 
 ## 踩坑记录
 - ❌ 发错号（主号发成实验室）

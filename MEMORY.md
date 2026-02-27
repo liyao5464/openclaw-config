@@ -4,7 +4,7 @@
 
 - 发文章前必问：发主号还是实验室？不确定就问
 - 排版前删掉"备用标题"，不能进正文
-- HTML统一用 `scripts/md2html-pro.js ... wechat`
+- HTML转换：使用 baoyu-post-to-wechat 技能自动处理
 - 封面提示词要简洁，太复杂会超时
 - 写文章前必读 `writing-guide.md` + `style-agent.md`
 
