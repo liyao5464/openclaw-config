@@ -28,3 +28,8 @@ HTML转换由发布脚本自动处理，无需手动转换。
 - ✅ 封面提示词用英文简洁描述，一次成功不超时
 - ✅ 同选题写两版（冷静版+燃文版）让老里选，效率高
 - ✅ 同素材拆两篇给不同账号：大号贴读者画像，小号偏技术/创业
+- ❌ gen-image.sh生成的图片无扩展名，需手动mv加.png
+- ❌ wechat-api.ts的--cover路径相对于cwd，不要写成articles/xxx（会变成articles/articles/xxx）
+- ❌ md2html-pro.js有marked库bug，直接用wechat-api.ts自带的markdown转换即可
+- ✅ wechat-api.ts可直接发布.md文件，自动转HTML+上传图片+发草稿，一条龙
+- ✅ 配图提示词用中文描述，老里要求图片文字必须是中文
