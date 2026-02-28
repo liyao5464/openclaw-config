@@ -16,11 +16,37 @@
 - MEMORY.md 硬限100行，超了移 archive/
 - 详细方法论见 `archive/epro-memory-guide.md`
 
+## 自动提取（每轮对话后台执行）
+
+不等用户说"记住"，主动扫描对话识别值得沉淀的信息：
+
+**触发信号：**
+| 信号 | 示例 | 写入位置 |
+|------|------|---------|
+| 偏好表达 | "我喜欢/不喜欢..." | memory/preferences/ |
+| 纠正行为 | "不对，应该是..." | memory/lessons/ |
+| 重复强调 | 同一件事说第2次 | 升级写入 MEMORY.md |
+| 决策确认 | "就这样/好的/确定" | memory/decisions/ |
+| 踩坑描述 | "上次xxx出了问题" | memory/lessons/ |
+
+**六类分类法（ePro-Memory）：**
+1. 用户个人信息 → USER.md
+2. 偏好习惯 → memory/preferences/
+3. 相关事物（工具/账号/配置）→ USER.md 或 MEMORY.md
+4. 发生过的事 → memory/YYYY-MM-DD.md
+5. AI工作经验 → memory/lessons/
+6. 通用方法论 → memory/lessons/ 或 archive/
+
+**执行规则：**
+- 只写新增/变更内容，不重复写已有信息
+- 静默完成，不打扰用户（回复 NO_REPLY）
+- 拿不准分类时，写入当天日志，加标注待归类
+
 ## 压缩前自动保存
 
 上下文即将压缩时：
 1. 检查有无重要信息需保存
-2. 分类写入对应文件（USER.md / MEMORY.md / memory/日期.md）
+2. 按六类分类法写入对应文件
 3. 回复 NO_REPLY
 
 ## 安全
