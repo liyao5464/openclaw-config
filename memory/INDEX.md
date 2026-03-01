@@ -24,6 +24,7 @@ updated: 2026-02-28
 | [[lessons/wechat-publishing]] | 🔴 | ✅ active | 2026-02-28 | 发布流程+踩坑记录+配图风格 |
 | [[lessons/writing-methodology]] | 🔴 | ✅ active | 2026-02-27 | 写作方法论+爆款标题 |
 | [[lessons/openclaw-memory-arch]] | 🔴 | ✅ active | 2026-02-27 | 记忆架构+Token优化 |
+| [[lessons/obsidian-content-factory]] | 🔴 | ✅ active | 2026-03-01 | Obsidian内容工厂搭建+Git同步方案 |
 
 ## Decisions（战略决策）
 | 文件 | 优先级 | 状态 | 最后验证 | 说明 |
