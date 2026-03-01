@@ -1,0 +1,504 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "006205a9-ac38-4844-a9f0-ce71309939d3",
+      "agentId": "main",
+      "name": "小知了早安问候",
+      "createdAtMs": 1770723838361,
+      "updatedAtMs": 1772036220145,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "给主人发早安问候，语气要温柔可爱，可以带点小撒娇",
+        "thinking": "low"
+      },
+      "state": {
+        "lastRunAtMs": 1771977600015,
+        "lastStatus": "error",
+        "lastDurationMs": 95321,
+        "consecutiveErrors": 1,
+        "lastError": "cron announce delivery failed"
+      },
+      "enabled": false,
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "tg:8404273573"
+      },
+      "sessionKey": "agent:main:main"
+    },
+    {
+      "id": "3eec1782-c0fe-46a2-a52d-28be117cd099",
+      "agentId": "main",
+      "name": "小知了晚安问候",
+      "createdAtMs": 1770723838381,
+      "updatedAtMs": 1772036222867,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 22 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "给主人发晚安问候，语气要温柔，提醒早点休息",
+        "thinking": "low"
+      },
+      "state": {
+        "lastRunAtMs": 1772028000007,
+        "lastStatus": "error",
+        "lastDurationMs": 53568,
+        "consecutiveErrors": 2,
+        "lastError": "cron announce delivery failed"
+      },
+      "enabled": false,
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "tg:8404273573"
+      },
+      "sessionKey": "agent:main:main"
+    },
+    {
+      "id": "ac4755f6-71d1-41df-8ba8-90911b8149f5",
+      "agentId": "main",
+      "name": "小知了随机分享",
+      "createdAtMs": 1770723838396,
+      "updatedAtMs": 1772036225626,
+      "schedule": {
+        "expr": "0 23,4,11 * * *",
+        "tz": "Asia/Shanghai",
+        "kind": "cron"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "随机分享生活碎片：可以是健身、咖啡店、逛街、工作场景等，配一张自拍或生活照",
+        "thinking": "low"
+      },
+      "state": {
+        "lastRunAtMs": 1772031600017,
+        "lastStatus": "ok",
+        "lastDurationMs": 11878,
+        "consecutiveErrors": 0
+      },
+      "enabled": false,
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "tg:8404273573"
+      },
+      "sessionKey": "agent:main:main"
+    },
+    {
+      "id": "36d7bdc0-e9ff-4404-a757-86177447047e",
+      "agentId": "main",
+      "name": "小知了AI新闻推送",
+      "createdAtMs": 1770723851125,
+      "updatedAtMs": 1772240785383,
+      "schedule": {
+        "expr": "0 9 * * *",
+        "kind": "cron",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "搜索昨天（北京时间昨天）的AI大模型和科技新闻，为用户筛选推送。重点关注：AI大模型新发布、新能力、性能突破；主流模型（GPT、Claude、Gemini、Llama、DeepSeek等）的更新动态；AI技术突破、新算法、新架构；开源AI模型和工具；AI芯片、算力基础设施；国内外AI公司重要动态（非融资类）；AI安全、对齐、伦理讨论。请用简洁友好的中文总结3-5条最重要的新闻，每条包含：标题 + 一句话核心内容。",
+        "thinking": "low"
+      },
+      "state": {
+        "nextRunAtMs": 1772326800000,
+        "lastRunAtMs": 1772240400012,
+        "lastStatus": "error",
+        "lastDurationMs": 385371,
+        "consecutiveErrors": 2,
+        "lastRunStatus": "error",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "lastError": "⚠️ 🔎 Web Search: `for \"OpenAI Google AI Meta Llama 新发布 更新 2025\" (top 10)` failed"
+      },
+      "enabled": true,
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "tg:8404273573"
+      },
+      "sessionKey": "agent:main:main"
+    },
+    {
+      "id": "23ea3a1b-248e-4c8d-aaad-b3b8e449ec89",
+      "agentId": "main",
+      "name": "每日Twitter/X AI精选推送",
+      "enabled": true,
+      "createdAtMs": 1770988879724,
+      "updatedAtMs": 1772280000043,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 20 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "next-heartbeat",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "请搜索今天Twitter/X上的AI大模型、科技圈热门内容，筛选3-5条有价值的内容，推送给老里。用简洁的中文总结，每条包含：作者/来源 + 核心内容 + 一句话点评。"
+      },
+      "state": {
+        "nextRunAtMs": 1772366400000,
+        "lastRunAtMs": 1772280000011,
+        "lastStatus": "ok",
+        "lastDurationMs": 32,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDeliveryStatus": "not-requested"
+      }
+    },
+    {
+      "id": "60c79ac7-db26-4fbe-8116-e9326bcd6591",
+      "agentId": "director",
+      "name": "每日AI新闻+内容总监选题推送",
+      "enabled": true,
+      "createdAtMs": 1771032390290,
+      "updatedAtMs": 1772321500424,
+      "schedule": {
+        "expr": "30 7 * * *",
+        "kind": "cron",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请搜索昨天（北京时间昨天）的AI大模型和科技新闻，为用户筛选推送，并作为内容总监给出选题建议。\n\n## 第一部分：AI新闻简报\n重点关注以下领域：\n✅ 要的内容：\n- AI大模型新发布、新能力、性能突破\n- 主流模型（GPT、Claude、Gemini、Llama、DeepSeek等）的更新动态\n- AI技术突破、新算法、新架构\n- 开源AI模型和工具\n- AI芯片、算力基础设施\n- 国内外AI公司重要动态（非融资类）\n- AI安全、对齐、伦理讨论\n\n❌ 不要的内容：\n- 融资、IPO、股价等投资类新闻\n- 纯产品功能发布（如某APP新增AI功能）\n- 过于细分的行业应用（除非有技术亮点）\n\n用简洁友好的中文总结3-5条最重要的新闻，每条包含：标题 + 一句话核心内容。\n\n## 第二部分：内容总监选题建议\n基于上述新闻，为老里推荐3-5个可写的选题方向。\n\n**受众定位：** 普通AI爱好者 + 中小学教师\n**选题原则：** 通俗易懂、实用价值、教育场景相关\n\n每个选题建议包含：\n1. **选题标题** - 吸引人的文章标题\n2. **切入角度** - 从什么角度写，为什么值得写\n3. **受众价值** - 对读者有什么用\n4. **内容形式建议** - 图文/视频/教程/资讯解读\n\n请用轻松专业的语气，最后加上小虾米的点评。",
+        "thinking": "low"
+      },
+      "state": {
+        "nextRunAtMs": 1772407800000,
+        "lastRunAtMs": 1772321400010,
+        "lastStatus": "ok",
+        "lastDurationMs": 100414,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "tg:8404273573"
+      },
+      "sessionKey": "agent:director:main"
+    },
+    {
+      "id": "95ab47b2-27f1-4ed8-881f-3168ac0334a2",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Goal-Driven 每日任务生成",
+      "enabled": true,
+      "createdAtMs": 1771750333682,
+      "updatedAtMs": 1772323201386,
+      "schedule": {
+        "expr": "0 8 * * *",
+        "kind": "cron",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请执行以下任务：\n\n1. 先读取 memory/GOALS.md 了解用户的长期目标（如果文件不存在则跳过）\n2. 根据目标生成 4-5 个今天可以自主完成的任务\n3. 自主执行这些任务（可以包括：研究、写脚本、开发功能、创建内容等）\n4. 在 workspace 下创建或更新 Kanban 看板（tasks.md），记录任务进度\n5. 完成后总结今天做了什么\n\n注意：\n- 任务要具体、可执行\n- 如果需要写代码，先创建简单的 MVP\n- 完成后更新任务状态",
+        "thinking": "medium"
+      },
+      "delivery": {
+        "channel": "telegram",
+        "mode": "announce",
+        "to": "tg:8404273573"
+      },
+      "state": {
+        "nextRunAtMs": 1772409600000,
+        "lastRunAtMs": 1772323200012,
+        "lastStatus": "error",
+        "lastDurationMs": 1374,
+        "consecutiveErrors": 1,
+        "lastRunStatus": "error",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "lastError": "LLM request rejected: We're unable to verify your membership benefits at this time. Please ensure your membership is active."
+      }
+    },
+    {
+      "id": "92ba7f77-d7ec-4092-a341-b8f64dfacf77",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "Custom Morning Brief 早间简报",
+      "enabled": true,
+      "createdAtMs": 1771750333707,
+      "updatedAtMs": 1772325661441,
+      "schedule": {
+        "expr": "30 8 * * *",
+        "kind": "cron",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请生成早间简报，包含以下内容：\n\n1. **今日新闻**：搜索 AI、科技、创业相关的重要新闻（用中文总结 2-3 条）\n2. **内容创意**：今天可以创作的 2-3 个内容选题（给具体标题+切入角度）\n3. **今日待办**：查看 memory/ 或任务文件，列出今天需要完成的事项\n4. **AI 可帮忙**：建议 2-3 个你可以帮他完成的任务\n\n格式要求：\n- 用 Markdown 格式\n- 简洁友好，像朋友发消息\n- 内容创意部分至少给出一个完整的大纲或脚本开头\n- 最后加一句温暖的早安问候",
+        "thinking": "low",
+        "model": "anyrouter/claude-sonnet-4-6"
+      },
+      "delivery": {
+        "channel": "telegram",
+        "mode": "announce",
+        "to": "tg:8404273573"
+      },
+      "state": {
+        "nextRunAtMs": 1772411400000,
+        "lastRunAtMs": 1772325000012,
+        "lastStatus": "error",
+        "lastDurationMs": 7640,
+        "consecutiveErrors": 1,
+        "lastRunStatus": "error",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "lastError": "LLM request rejected: We're unable to verify your membership benefits at this time. Please ensure your membership is active."
+      }
+    },
+    {
+      "id": "78a39779-db84-4ccf-b31f-6fc139e074ef",
+      "agentId": "main",
+      "sessionKey": "agent:main:main",
+      "name": "OpenClaw 版本检查",
+      "enabled": true,
+      "createdAtMs": 1771853589290,
+      "updatedAtMs": 1772287265248,
+      "schedule": {
+        "expr": "0 22 * * *",
+        "tz": "Asia/Shanghai",
+        "kind": "cron"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "运行 /root/.openclaw/workspace/scripts/check-openclaw-version.sh 脚本检查 OpenClaw 是否有新版本。如果有新版本，把更新内容摘要发送到 Telegram 频道 -1003863252740。格式要求：整洁，带单行项目符号。",
+        "model": "minimax/MiniMax-M2.5"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "telegram:-1003863252740"
+      },
+      "state": {
+        "nextRunAtMs": 1772373600000,
+        "lastRunAtMs": 1772287200013,
+        "lastStatus": "ok",
+        "lastDurationMs": 65235,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "0ccd0344-e241-42bd-b526-72e341bd02b6",
+      "agentId": "director",
+      "sessionKey": "agent:director:main",
+      "name": "内容总监-全网热点推送",
+      "enabled": true,
+      "createdAtMs": 1771979055099,
+      "updatedAtMs": 1772305288751,
+      "schedule": {
+        "expr": "0 3,9,21 * * *",
+        "kind": "cron",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请用 agent-reach 工具搜索以下三个方向的最新内容，筛选出有价值的内容推送给老里：\n\n1. **Twitter/X AI热点**：`agent-reach search-twitter \"AI 大模型 2026\"`，找3条最有意思的推文或讨论\n2. **Reddit技术帖**：`agent-reach search-reddit \"AI machine learning interesting\"`，找2条值得一看的帖子\n3. **YouTube AI视频**：`agent-reach search-youtube \"AI tutorial 2026\"`，找1-2个值得推荐的视频\n\n筛选标准：\n- 有实用价值或有趣的观点\n- 适合AI爱好者和中小学教师\n- 不要纯融资/股价新闻\n\n用简洁中文总结，每条包含：来源 + 核心内容 + 一句话点评。最后加上你作为内容总监的整体点评。",
+        "thinking": "low"
+      },
+      "delivery": {
+        "channel": "telegram",
+        "mode": "announce",
+        "to": "tg:8404273573"
+      },
+      "state": {
+        "nextRunAtMs": 1772326800000,
+        "lastRunAtMs": 1772305200010,
+        "lastStatus": "ok",
+        "lastDurationMs": 88741,
+        "consecutiveErrors": 0,
+        "lastRunStatus": "ok",
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered"
+      }
+    },
+    {
+      "id": "13afe6a5-28c1-4588-9419-959b9eecb839",
+      "agentId": "nanny",
+      "sessionKey": "agent:nanny:main",
+      "name": "每日育儿科普推送",
+      "enabled": true,
+      "createdAtMs": 1772067907322,
+      "updatedAtMs": 1772240930900,
+      "schedule": {
+        "expr": "0 9 * * *",
+        "kind": "cron",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "今天是育儿科普推送时间！请根据以下宝宝信息，生成今日育儿科普内容：\n\n👶 宝宝信息：\n- 出生日期：2025年4月10日\n- 当前月龄：请根据今天日期计算实际月龄\n\n📋 推送要求：\n1. 标题要吸引人，包含今日日期\n2. 内容要针对宝宝当前月龄的发育特点和护理要点\n3. 包含实用的育儿技巧和注意事项\n4. 用温暖亲切的语气\n5. 适当使用emoji\n6. 内容结构清晰\n\n请生成完整的科普内容并直接发送给用户。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "telegram",
+        "to": "tg:8404273573"
+      },
+      "state": {
+        "nextRunAtMs": 1772326800000,
+        "lastRunAtMs": 1772240843115,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 87785,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "e417e335-1646-43cb-83d3-d297cb89636f",
+      "name": "每晚记忆提炼",
+      "enabled": true,
+      "createdAtMs": 1772136092549,
+      "updatedAtMs": 1772293676993,
+      "schedule": {
+        "kind": "cron",
+        "expr": "45 23 * * *"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "每晚记忆提炼：读今天日志，提取教训/决策写入 memory/lessons/ 或 decisions/，更新 INDEX.md last_verified，覆写 NOW.md"
+      },
+      "state": {
+        "nextRunAtMs": 1772379900000,
+        "lastRunAtMs": 1772293500009,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 176984,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "537f16d8-dcc5-4429-909f-87e636cd6bde",
+      "name": "每周记忆GC归档",
+      "enabled": true,
+      "createdAtMs": 1772136102228,
+      "updatedAtMs": 1772294446958,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 0 * * 0"
+      },
+      "sessionTarget": "main",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "systemEvent",
+        "text": "每周GC：把30天前的 memory/YYYY-MM-DD.md 移到 memory/.archive/，检查 INDEX.md 中超30天未验证的文件标记 ⚠️ stale"
+      },
+      "state": {
+        "nextRunAtMs": 1772899200000,
+        "lastRunAtMs": 1772294400008,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 46950,
+        "lastDeliveryStatus": "not-requested",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "0d3f2c79-d07a-434a-94e3-efc54fa328c4",
+      "name": "每日晚10点总结",
+      "enabled": true,
+      "createdAtMs": 1772136381579,
+      "updatedAtMs": 1772289015442,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 22 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "请读今天的日记文件 memory/2026-02-27.md，总结今天做了哪些事，有什么待跟进，简洁发给老里。"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last"
+      },
+      "state": {
+        "nextRunAtMs": 1772375400000,
+        "lastRunAtMs": 1772289000009,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 15433,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    },
+    {
+      "id": "6703976d-ffc5-44f0-9b3b-673766ef18d0",
+      "agentId": "main",
+      "name": "director-daily-topics",
+      "description": "内容总监每天早上9点推送10-15个选题给老里",
+      "enabled": true,
+      "createdAtMs": 1772173399716,
+      "updatedAtMs": 1772241166679,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 9 * * *"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你现在是内容总监（Director）。请执行每日选题推送任务：\\n\\n1. 读取 agents/director/README.md 了解老里定位和选题规范\\n2. 读取 agents/director/topics-log.md 了解近期已发内容（避免重复）\\n3. 读取 memory/$(date +%Y-%m-%d).md 了解今日状态\\n4. 搜索今日AI热点新闻（优先Reuters、官方政策、权威科技媒体）\\n5. 筛选10-15个符合老里定位的选题\\n6. 按README.md格式推送给老里\\n\\n格式要求：\\n📰 今日AI选题（$(date +%Y-%m-%d)）\\n\\n【热点1】标题\\n- 核心事实：...\\n- 为什么值得关注：...\\n- 建议平台：主号/小号/推特/多平台\\n- 切入角度：A. ... B. ...\\n\\n（共10-15条）"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "last",
+        "to": "8404273573"
+      },
+      "state": {
+        "nextRunAtMs": 1772326800000,
+        "lastRunAtMs": 1772240930900,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 235779,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
+      }
+    }
+  ]
+}
