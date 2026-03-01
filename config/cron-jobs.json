@@ -104,7 +104,7 @@
       "agentId": "main",
       "name": "小知了AI新闻推送",
       "createdAtMs": 1770723851125,
-      "updatedAtMs": 1772240785383,
+      "updatedAtMs": 1772326817228,
       "schedule": {
         "expr": "0 9 * * *",
         "kind": "cron",
@@ -115,7 +115,8 @@
       "payload": {
         "kind": "agentTurn",
         "message": "搜索昨天（北京时间昨天）的AI大模型和科技新闻，为用户筛选推送。重点关注：AI大模型新发布、新能力、性能突破；主流模型（GPT、Claude、Gemini、Llama、DeepSeek等）的更新动态；AI技术突破、新算法、新架构；开源AI模型和工具；AI芯片、算力基础设施；国内外AI公司重要动态（非融资类）；AI安全、对齐、伦理讨论。请用简洁友好的中文总结3-5条最重要的新闻，每条包含：标题 + 一句话核心内容。",
-        "thinking": "low"
+        "thinking": "low",
+        "model": "minimax/MiniMax-M2.5"
       },
       "state": {
         "nextRunAtMs": 1772326800000,
@@ -126,7 +127,7 @@
         "lastRunStatus": "error",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "lastError": "⚠️ 🔎 Web Search: `for \"OpenAI Google AI Meta Llama 新发布 更新 2025\" (top 10)` failed"
+        "runningAtMs": 1772326800010
       },
       "enabled": true,
       "delivery": {
@@ -344,7 +345,8 @@
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDelivered": true,
-        "lastDeliveryStatus": "delivered"
+        "lastDeliveryStatus": "delivered",
+        "runningAtMs": 1772326800007
       }
     },
     {
@@ -379,7 +381,8 @@
         "lastDurationMs": 87785,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772326800007
       }
     },
     {
@@ -497,7 +500,8 @@
         "lastDurationMs": 235779,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0
+        "consecutiveErrors": 0,
+        "runningAtMs": 1772326800007
       }
     }
   ]
