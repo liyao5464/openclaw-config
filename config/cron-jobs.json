@@ -244,7 +244,7 @@
       "name": "Custom Morning Brief 早间简报",
       "enabled": true,
       "createdAtMs": 1771750333707,
-      "updatedAtMs": 1772325661441,
+      "updatedAtMs": 1772325749169,
       "schedule": {
         "expr": "30 8 * * *",
         "kind": "cron",
@@ -256,7 +256,7 @@
         "kind": "agentTurn",
         "message": "请生成早间简报，包含以下内容：\n\n1. **今日新闻**：搜索 AI、科技、创业相关的重要新闻（用中文总结 2-3 条）\n2. **内容创意**：今天可以创作的 2-3 个内容选题（给具体标题+切入角度）\n3. **今日待办**：查看 memory/ 或任务文件，列出今天需要完成的事项\n4. **AI 可帮忙**：建议 2-3 个你可以帮他完成的任务\n\n格式要求：\n- 用 Markdown 格式\n- 简洁友好，像朋友发消息\n- 内容创意部分至少给出一个完整的大纲或脚本开头\n- 最后加一句温暖的早安问候",
         "thinking": "low",
-        "model": "anyrouter/claude-sonnet-4-6"
+        "model": "minimax/MiniMax-M2.5"
       },
       "delivery": {
         "channel": "telegram",
