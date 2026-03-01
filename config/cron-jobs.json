@@ -104,7 +104,7 @@
       "agentId": "main",
       "name": "小知了AI新闻推送",
       "createdAtMs": 1770723851125,
-      "updatedAtMs": 1772326817228,
+      "updatedAtMs": 1772326828618,
       "schedule": {
         "expr": "0 9 * * *",
         "kind": "cron",
@@ -119,15 +119,15 @@
         "model": "minimax/MiniMax-M2.5"
       },
       "state": {
-        "nextRunAtMs": 1772326800000,
-        "lastRunAtMs": 1772240400012,
+        "nextRunAtMs": 1772413200000,
+        "lastRunAtMs": 1772326800010,
         "lastStatus": "error",
-        "lastDurationMs": 385371,
-        "consecutiveErrors": 2,
+        "lastDurationMs": 28608,
+        "consecutiveErrors": 3,
         "lastRunStatus": "error",
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "runningAtMs": 1772326800010
+        "lastError": "LLM request rejected: We're unable to verify your membership benefits at this time. Please ensure your membership is active."
       },
       "enabled": true,
       "delivery": {
@@ -208,7 +208,7 @@
       "name": "Goal-Driven 每日任务生成",
       "enabled": true,
       "createdAtMs": 1771750333682,
-      "updatedAtMs": 1772323201386,
+      "updatedAtMs": 1772327181902,
       "schedule": {
         "expr": "0 8 * * *",
         "kind": "cron",
@@ -219,7 +219,8 @@
       "payload": {
         "kind": "agentTurn",
         "message": "请执行以下任务：\n\n1. 先读取 memory/GOALS.md 了解用户的长期目标（如果文件不存在则跳过）\n2. 根据目标生成 4-5 个今天可以自主完成的任务\n3. 自主执行这些任务（可以包括：研究、写脚本、开发功能、创建内容等）\n4. 在 workspace 下创建或更新 Kanban 看板（tasks.md），记录任务进度\n5. 完成后总结今天做了什么\n\n注意：\n- 任务要具体、可执行\n- 如果需要写代码，先创建简单的 MVP\n- 完成后更新任务状态",
-        "thinking": "medium"
+        "thinking": "medium",
+        "model": "minimax/MiniMax-M2.5"
       },
       "delivery": {
         "channel": "telegram",
@@ -319,7 +320,7 @@
       "name": "内容总监-全网热点推送",
       "enabled": true,
       "createdAtMs": 1771979055099,
-      "updatedAtMs": 1772305288751,
+      "updatedAtMs": 1772326907999,
       "schedule": {
         "expr": "0 3,9,21 * * *",
         "kind": "cron",
@@ -338,15 +339,14 @@
         "to": "tg:8404273573"
       },
       "state": {
-        "nextRunAtMs": 1772326800000,
-        "lastRunAtMs": 1772305200010,
+        "nextRunAtMs": 1772370000000,
+        "lastRunAtMs": 1772326828618,
         "lastStatus": "ok",
-        "lastDurationMs": 88741,
+        "lastDurationMs": 79381,
         "consecutiveErrors": 0,
         "lastRunStatus": "ok",
         "lastDelivered": true,
-        "lastDeliveryStatus": "delivered",
-        "runningAtMs": 1772326828618
+        "lastDeliveryStatus": "delivered"
       }
     },
     {
@@ -356,7 +356,7 @@
       "name": "每日育儿科普推送",
       "enabled": true,
       "createdAtMs": 1772067907322,
-      "updatedAtMs": 1772240930900,
+      "updatedAtMs": 1772327184722,
       "schedule": {
         "expr": "0 9 * * *",
         "kind": "cron",
@@ -366,7 +366,8 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "今天是育儿科普推送时间！请根据以下宝宝信息，生成今日育儿科普内容：\n\n👶 宝宝信息：\n- 出生日期：2025年4月10日\n- 当前月龄：请根据今天日期计算实际月龄\n\n📋 推送要求：\n1. 标题要吸引人，包含今日日期\n2. 内容要针对宝宝当前月龄的发育特点和护理要点\n3. 包含实用的育儿技巧和注意事项\n4. 用温暖亲切的语气\n5. 适当使用emoji\n6. 内容结构清晰\n\n请生成完整的科普内容并直接发送给用户。"
+        "message": "今天是育儿科普推送时间！请根据以下宝宝信息，生成今日育儿科普内容：\n\n👶 宝宝信息：\n- 出生日期：2025年4月10日\n- 当前月龄：请根据今天日期计算实际月龄\n\n📋 推送要求：\n1. 标题要吸引人，包含今日日期\n2. 内容要针对宝宝当前月龄的发育特点和护理要点\n3. 包含实用的育儿技巧和注意事项\n4. 用温暖亲切的语气\n5. 适当使用emoji\n6. 内容结构清晰\n\n请生成完整的科普内容并直接发送给用户。",
+        "model": "minimax/MiniMax-M2.5"
       },
       "delivery": {
         "mode": "announce",
@@ -374,15 +375,15 @@
         "to": "tg:8404273573"
       },
       "state": {
-        "nextRunAtMs": 1772326800000,
-        "lastRunAtMs": 1772240843115,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 87785,
+        "nextRunAtMs": 1772413200000,
+        "lastRunAtMs": 1772326907999,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 200912,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772326907999
+        "consecutiveErrors": 1,
+        "lastError": "⚠️ ✉️ Message: `0` failed"
       }
     },
     {
@@ -476,7 +477,7 @@
       "description": "内容总监每天早上9点推送10-15个选题给老里",
       "enabled": true,
       "createdAtMs": 1772173399716,
-      "updatedAtMs": 1772327119169,
+      "updatedAtMs": 1772327129359,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * *"
@@ -494,15 +495,15 @@
         "to": "8404273573"
       },
       "state": {
-        "nextRunAtMs": 1772326800000,
-        "lastRunAtMs": 1772240930900,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 235779,
+        "nextRunAtMs": 1772413200000,
+        "lastRunAtMs": 1772327108911,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 20448,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
-        "runningAtMs": 1772327108911
+        "consecutiveErrors": 1,
+        "lastError": "LLM request rejected: We're unable to verify your membership benefits at this time. Please ensure your membership is active."
       }
     }
   ]
