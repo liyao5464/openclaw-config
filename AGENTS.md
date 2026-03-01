@@ -8,6 +8,7 @@
 4. 读 `memory/INDEX.md` — 知识导航，按需加载子文件
 5. 读 `memory/YYYY-MM-DD.md`（今天+昨天）
 6. 主session才读 `MEMORY.md`
+7. 内容创作任务时读 `SOP_GZH.md` — 公众号内容生产流程
 
 ## 记忆
 
