@@ -22,16 +22,17 @@
 
 | # | 项目 | 路径 | 阶段 | 稳定天数 | 最后报错 | 收割方向 | 最后更新 |
 |---|------|------|------|---------|---------|---------|---------|
-| 1 | agent-browser | skills/agent-browser | 🌿 | 3 | - | 待定 | 2026-02-28 |
-| 2 | task-status | skills/task-status | 🌿 | 3 | - | 待定 | 2026-02-28 |
-| 3 | deepwork-tracker | skills/deepwork-tracker | 🌿 | 3 | - | 待定 | 2026-02-28 |
-| 4 | find-skills | skills/find-skills | 🌿 | 3 | - | 开源Skill | 2026-02-28 |
-| 5 | blog-post-writer | skills/blog-post-writer | 🌿 | 3 | - | 教程 | 2026-02-28 |
-| 6 | smart-memory | skills/smart-memory | 🌿 | 3 | - | 待定 | 2026-02-28 |
-| 7 | laoli-writing | skills/laoli-writing | 🌿 | 3 | - | 教程 | 2026-02-28 |
-| 8 | write-article-flow | skills/write-article-flow | 🌿 | 3 | - | 待定 | 2026-02-28 |
-| 9 | memory-trainer | skills/memory-trainer | 🌿 | 3 | - | 开源Skill | 2026-02-28 |
-| 10 | clawra | agents/clawra | 🌿 | 3 | - | 待定 | 2026-02-28 |
+| 1 | agent-browser | skills/agent-browser | 🌿 | 4 | - | 待定 | 2026-03-02 |
+| 2 | task-status | skills/task-status | 🌿 | 4 | - | 待定 | 2026-03-02 |
+| 3 | deepwork-tracker | skills/deepwork-tracker | 🌿 | 4 | - | 待定 | 2026-03-02 |
+| 4 | find-skills | skills/find-skills | 🌿 | 4 | - | 开源Skill | 2026-03-02 |
+| 5 | blog-post-writer | skills/blog-post-writer | 🌿 | 4 | - | 教程 | 2026-03-02 |
+| 6 | smart-memory | skills/smart-memory | 🌿 | 4 | - | 待定 | 2026-03-02 |
+| 7 | laoli-writing | skills/laoli-writing | 🌿 | 4 | - | 教程 | 2026-03-02 |
+| 8 | write-article-flow | skills/write-article-flow | 🌿 | 4 | - | 待定 | 2026-03-02 |
+| 9 | memory-trainer | skills/memory-trainer | 🌿 | 4 | - | 开源Skill | 2026-03-02 |
+| 10 | clawra | agents/clawra | 🌿 | 4 | - | 待定 | 2026-03-02 |
+| 11 | wechat-fetcher | skills/wechat-fetcher | 🌱 | 1 | - | 待定 | 2026-03-02 |
 
 ---
-*此文件由孵化系统自动更新，最后扫描: 2026-02-28 19:57*
+*此文件由孵化系统自动更新，最后扫描: 2026-03-02 19:00*
