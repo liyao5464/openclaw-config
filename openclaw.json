@@ -3,16 +3,6 @@
     "lastTouchedVersion": "2026.2.25",
     "lastTouchedAt": "2026-02-27T10:11:18.299Z"
   },
-  "env": {
-    "MINIMAX_API_KEY": "sk-xxx-redacted",
-    "FAL_KEY": "fal-xxx-redacted",
-    "ANYROUTER_API_KEY": "sk-xxx-redacted",
-    "NEWCLI_API_KEY": "sk-ant-xxx-redacted",
-    "LISTENHUB_API_KEY": "lh_sk_xxx-redacted",
-    "BIGMODEL_API_KEY": "xxx-redacted",
-    "AICODEMIRROR_API_KEY": "sk-ant-xxx-redacted",
-    "GETNOTES_API_KEY": "xxx-redacted"
-  },
   "wizard": {
     "lastRunAt": "2026-02-27T09:03:14.264Z",
     "lastRunVersion": "2026.2.25",
