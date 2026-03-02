@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeepSeek vs ChatGPT：普通人该用哪个？</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #f5f5f5; color: #333; font-size: 16px; line-height: 1.8; }
+  .container { max-width: 680px; margin: 0 auto; background: #fff; }
+
+  /* Hero */
+  .hero { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); padding: 48px 24px 40px; text-align: center; }
+  .hero-tag { display: inline-block; background: rgba(255,255,255,0.15); color: #fff; font-size: 12px; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; letter-spacing: 1px; }
+  .hero h1 { color: #fff; font-size: 26px; font-weight: 700; line-height: 1.4; margin-bottom: 12px; }
+  .hero p { color: rgba(255,255,255,0.75); font-size: 14px; }
+
+  /* TL;DR box */
+  .tldr { margin: 24px 20px; background: #fff8e1; border-left: 4px solid #ffc107; border-radius: 8px; padding: 16px 20px; }
+  .tldr-title { font-weight: 700; color: #e65100; font-size: 14px; margin-bottom: 8px; }
+  .tldr p { font-size: 15px; color: #555; line-height: 1.9; }
+  .tldr strong { color: #333; }
+
+  /* Section */
+  .section { padding: 28px 20px; border-bottom: 1px solid #f0f0f0; }
+  .section-title { font-size: 20px; font-weight: 700; color: #1a1a2e; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .num { background: #0f3460; color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+
+  /* Background card */
+  .bg-card { background: #f8f9ff; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .bg-card p { color: #555; font-size: 15px; }
+  .highlight-stat { background: #e8f4fd; border-radius: 8px; padding: 12px 16px; margin-top: 12px; text-align: center; }
+  .highlight-stat strong { color: #0f3460; font-size: 18px; }
+  .highlight-stat span { color: #666; font-size: 13px; display: block; margin-top: 2px; }
+
+  /* Compare table */
+  .compare-table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 8px; }
+  .compare-table th { background: #0f3460; color: #fff; padding: 10px 12px; text-align: center; }
+  .compare-table th:first-child { text-align: left; }
+  .compare-table td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; }
+  .compare-table td:first-child { font-weight: 600; color: #333; }
+  .compare-table td:not(:first-child) { text-align: center; color: #555; }
+  .compare-table tr:nth-child(even) td { background: #fafafa; }
+
+  /* Dimension cards */
+  .dim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+  .dim-card { border-radius: 10px; padding: 16px; }
+  .dim-card.deepseek { background: #e8f5e9; border: 1px solid #c8e6c9; }
+  .dim-card.chatgpt { background: #e3f2fd; border: 1px solid #bbdefb; }
+  .dim-card .brand { font-weight: 700; font-size: 13px; margin-bottom: 8px; }
+  .dim-card.deepseek .brand { color: #2e7d32; }
+  .dim-card.chatgpt .brand { color: #1565c0; }
+  .dim-card ul { list-style: none; padding: 0; }
+  .dim-card ul li { font-size: 13px; color: #555; padding: 3px 0; }
+  .dim-card ul li::before { content: "✓ "; color: #4caf50; font-weight: 700; }
+
+  /* Scenario cards */
+  .scenario-list { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+  .scenario-card { background: #f8f9ff; border-radius: 10px; padding: 14px 16px; display: flex; align-items: flex-start; gap: 12px; }
+  .scenario-icon { font-size: 22px; flex-shrink: 0; }
+  .scenario-body { flex: 1; }
+  .scenario-who { font-size: 13px; color: #888; margin-bottom: 2px; }
+  .scenario-rec { font-size: 15px; font-weight: 600; }
+  .scenario-rec .tag { display: inline-block; padding: 2px 10px; border-radius: 20px; font-size: 12px; margin-left: 6px; }
+  .tag-deepseek { background: #e8f5e9; color: #2e7d32; }
+  .tag-chatgpt { background: #e3f2fd; color: #1565c0; }
+  .tag-both { background: #fff3e0; color: #e65100; }
+
+  /* Privacy warning */
+  .warning-box { background: #fff3e0; border-radius: 10px; padding: 16px 20px; margin-top: 16px; border-left: 4px solid #ff9800; }
+  .warning-box .w-title { font-weight: 700; color: #e65100; margin-bottom: 6px; font-size: 15px; }
+  .warning-box p { font-size: 14px; color: #666; }
+
+  /* Final verdict */
+  .verdict { margin: 24px 20px; background: linear-gradient(135deg, #1a1a2e, #0f3460); border-radius: 16px; padding: 28px 24px; text-align: center; }
+  .verdict h3 { color: #fff; font-size: 18px; margin-bottom: 20px; }
+  .verdict-row { display: flex; gap: 12px; margin-bottom: 12px; }
+  .verdict-item { flex: 1; background: rgba(255,255,255,0.1); border-radius: 10px; padding: 14px 10px; }
+  .verdict-item .v-name { color: rgba(255,255,255,0.7); font-size: 12px; margin-bottom: 6px; }
+  .verdict-item .v-label { color: #fff; font-size: 13px; font-weight: 700; }
+
+  /* Footer */
+  .footer { padding: 24px 20px; text-align: center; background: #fafafa; }
+  .footer p { font-size: 13px; color: #999; line-height: 2; }
+  .footer strong { color: #0f3460; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-tag">🔥 2026年最新对比</div>
+    <h1>DeepSeek vs ChatGPT<br>普通人该用哪个？</h1>
+    <p>不懂技术也能看懂的选择指南</p>
+  </div>
+
+  <!-- TL;DR -->
+  <div class="tldr">
+    <div class="tldr-title">⚡ 先说结论（不想看长文的看这里）</div>
+    <p>想<strong>免费用、爱钻研问题</strong> → 选 <strong>DeepSeek</strong><br>
+    想<strong>省心、要全功能、愿意付费</strong> → 选 <strong>ChatGPT</strong></p>
+  </div>
+
+  <!-- Background -->
+  <div class="section">
+    <div class="section-title"><span class="num">1</span>背景：DeepSeek凭什么火？</div>
+    <div class="bg-card">
+      <p>2025年初，中国AI公司DeepSeek发布R1模型，性能媲美OpenAI，但训练成本只有后者的……</p>
+      <div class="highlight-stat">
+        <strong>1/30</strong>
+        <span>DeepSeek的训练成本 vs OpenAI</span>
+      </div>
+    </div>
+    <p style="font-size:14px;color:#666;">这件事震惊了硅谷，英伟达股价单日暴跌17%。一年多过去，DeepSeek已迭代到V3.2，ChatGPT升级到GPT-5.2，两款产品都更成熟了。</p>
+  </div>
+
+  <!-- Intelligence -->
+  <div class="section">
+    <div class="section-title"><span class="num">2</span>智能水平对比</div>
+    <table class="compare-table">
+      <tr><th>能力</th><th>DeepSeek</th><th>ChatGPT</th></tr>
+      <tr><td>逻辑推理</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+      <tr><td>数学/编程</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+      <tr><td>中文理解</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td></tr>
+      <tr><td>图片/语音</td><td>❌ 不支持</td><td>✅ 全支持</td></tr>
+      <tr><td>创意写作</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+    </table>
+    <p style="font-size:13px;color:#888;margin-top:10px;">纯文字对话两者旗鼓相当，但ChatGPT支持看图、语音，功能更全面。</p>
+  </div>
+
+  <!-- Price & Features -->
+  <div class="section">
+    <div class="section-title"><span class="num">3</span>价格 & 功能</div>
+    <div class="dim-grid">
+      <div class="dim-card deepseek">
+        <div class="brand">🟢 DeepSeek</div>
+        <ul>
+          <li>完全免费</li>
+          <li>推理过程透明</li>
+          <li>中文更地道</li>
+          <li>无需信用卡</li>
+        </ul>
+      </div>
+      <div class="dim-card chatgpt">
+        <div class="brand">🔵 ChatGPT</div>
+        <ul>
+          <li>免费版可用</li>
+          <li>Plus $20/月</li>
+          <li>记忆/插件/联网</li>
+          <li>图片生成</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy -->
+  <div class="section">
+    <div class="section-title"><span class="num">4</span>隐私与安全</div>
+    <p style="font-size:15px;color:#555;">这是很多人忽略的一点。</p>
+    <div class="warning-box">
+      <div class="w-title">⚠️ DeepSeek数据存储在中国服务器</div>
+      <p>如果你用它处理工作机密、个人隐私或敏感话题，需要谨慎。ChatGPT数据政策相对透明，企业版有更严格的隐私保护。</p>
+    </div>
+  </div>
+
+  <!-- Scenarios -->
+  <div class="section">
+    <div class="section-title"><span class="num">5</span>按场景选择</div>
+    <div class="scenario-list">
+      <div class="scenario-card">
+        <div class="scenario-icon">📚</div>
+        <div class="scenario-body">
+          <div class="scenario-who">学生 / 写作业</div>
+          <div class="scenario-rec">首选 <span class="tag tag-deepseek">DeepSeek</span></div>
+          <div style="font-size:13px;color:#888;margin-top:4px;">免费，推理强，解题过程清晰</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">👩‍🏫</div>
+        <div class="scenario-body">
+          <div class="scenario-who">老师备课 / 做PPT</div>
+          <div class="scenario-rec">首选 <span class="tag tag-chatgpt">ChatGPT</span></div>
+          <div style="font-size:13px;color:#888;margin-top:4px;">支持图片、语音，功能更全</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">💻</div>
+        <div class="scenario-body">
+          <div class="scenario-who">程序员 / 技术人员</div>
+          <div class="scenario-rec">首选 <span class="tag tag-deepseek">DeepSeek</span></div>
+          <div style="font-size:13px;color:#888;margin-top:4px;">编程能力顶级，还免费</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">✍️</div>
+        <div class="scenario-body">
+          <div class="scenario-who">日常聊天 / 创意写作</div>
+          <div class="scenario-rec">首选 <span class="tag tag-chatgpt">ChatGPT</span></div>
+          <div style="font-size:13px;color:#888;margin-top:4px;">更有"人味"，对话体验更自然</div>
+        </div>
+      </div>
+      <div class="scenario-card">
+        <div class="scenario-icon">💰</div>
+        <div class="scenario-body">
+          <div class="scenario-who">预算有限的普通用户</div>
+          <div class="scenario-rec">首选 <span class="tag tag-deepseek">DeepSeek</span></div>
+          <div style="font-size:13px;color:#888;margin-top:4px;">免费用起来，完全够用</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Verdict -->
+  <div class="verdict">
+    <h3>🏆 最终建议：两个都装</h3>
+    <div class="verdict-row">
+      <div class="verdict-item">
+        <div class="v-name">DeepSeek</div>
+        <div class="v-label">免费的学霸同学</div>
+      </div>
+      <div class="verdict-item">
+        <div class="v-name">ChatGPT</div>
+        <div class="v-label">全能的付费助手</div>
+      </div>
+    </div>
+    <p style="color:rgba(255,255,255,0.7);font-size:14px;margin-top:8px;">就像手机里同时装高德和百度地图，AI工具也可以互补使用。</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>作者：<strong>老里</strong> | 2026年2月<br>
+    关注公众号 <strong>「老里聊AI」</strong><br>
+    每周分享最实用的AI干货 🚀</p>
+  </div>
+
+</div>
+</body>
+</html>

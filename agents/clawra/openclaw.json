@@ -1,0 +1,12 @@
+{
+  "skills": {
+    "entries": {
+      "clawra-selfie": {
+        "enabled": true,
+        "env": {
+          "FAL_KEY": "c52e3c23-5e14-47c6-9059-c5e7aa62ff4c:04d3a9e98479295656e228845fbe8394"
+        }
+      }
+    }
+  }
+}

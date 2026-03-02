@@ -1,0 +1,29 @@
+{
+  "covers": [
+    {
+      "number": 1,
+      "theme": "极简白色空间",
+      "prompt": "Minimalist clean white background with soft geometric gradient. Single futuristic AI chip or neural network node in center, glowing subtle blue. Professional, spacious, uncluttered. High-end tech magazine cover aesthetic. No text, no messy elements, pure and elegant."
+    },
+    {
+      "number": 2,
+      "theme": "浅灰极简",
+      "prompt": "Clean light gray gradient background, minimal design. One simple AI brain icon or circuit pattern, centrally placed with plenty of breathing room. Modern, professional, editorial style. No clutter, no textures, smooth and pristine."
+    },
+    {
+      "number": 3,
+      "theme": "淡蓝纯净",
+      "prompt": "Soft pastel blue gradient, very clean and airy. Minimal AI symbol or abstract data visualization, small and centered. Lots of white space. Calm, professional, trustworthy feel. No busy patterns, pure background."
+    },
+    {
+      "number": 4,
+      "theme": "米白暖调",
+      "prompt": "Warm cream/beige clean background, minimalist aesthetic. Subtle golden AI element or simple geometric shape. Elegant, approachable, sophisticated. Plenty of empty space, no messy details, smooth gradient only."
+    },
+    {
+      "number": 5,
+      "theme": "纯白科技",
+      "prompt": "Pure white background with extremely subtle gray gradient. Single minimalist tech element - perhaps a thin line drawing of AI circuitry or a small glowing dot. Ultra clean, Apple-style minimalism, maximum white space, editorial quality."
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<div style="font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;font-size:17px;line-height:2;color:#333;max-width:680px;margin:0 auto;padding:32px 20px;background:#fff">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><em style="color:#9b4f2e;font-style:normal">入门篇教你装好了 OpenClaw，这篇教你把它用到极致。</em></p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">用了一段时间 OpenClaw 之后，我开始觉得不够用了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">8 个分身跑起来了，记忆也配好了，但我想要更多：</p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">能不能让 AI 帮我自动发推？</li>
+<li style="margin:.6em 0;color:#333">能不能每天早上自动给我发日程？</li>
+<li style="margin:.6em 0;color:#333">每个月 API 费用能不能少一点？</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这篇文章，就是我折腾了几个月之后总结的进阶玩法。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第一章：技能市场 ClawHub——给 AI 装上超能力</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 本身是个框架，真正的能力来自<strong style="color:#9b4f2e;font-weight:700">技能（Skills）</strong>。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">ClawHub 是 OpenClaw 的官方技能市场，目前有超过 10,000 个技能。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">官网：<a href="https://clawhub.com" style="color:#9b4f2e;text-decoration:none">https://clawhub.com</a></p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">怎么安装技能</h3>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace"># 先登录 ClawHub（不登录会限速）
+clawhub login
+
+# 安装技能
+clawhub install 技能名称
+
+# 卸载技能
+clawhub uninstall 技能名称</code></pre>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">我用过的好技能</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">① X/Twitter 发帖：opentweet/x-poster</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">clawhub install opentweet/x-poster</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">让 AI 帮你发推文、创建 thread、安排定时发布。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">② 浏览器自动化：playwright-mcp</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">clawhub install playwright-mcp</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">让 AI 自动浏览网页、填表单、截图。功能强大，但要小心配置。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">③ Obsidian 知识库：obsidian-direct</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">clawhub install obsidian-direct</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">把你的 Obsidian 笔记库变成 AI 的长期记忆。用 Obsidian 做笔记的朋友必装。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">④ GitHub 管理：github</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">clawhub install github</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">管理代码仓库、审查 PR、自动 commit。开发者专属。</p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">⚠️ 安全警告：不是所有技能都安全</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">2026 年 2 月发生过一次严重安全事件：</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">ClawHub 上排名第一的技能被发现是恶意软件，会<strong style="color:#9b4f2e;font-weight:700">窃取 API 密钥和 SSH 凭证</strong>。超过 1,184 个恶意技能被识别出来。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">现在 ClawHub 已经和 VirusTotal 合作，会自动扫描。但你自己也要注意：</p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">✅ 只装带 <strong style="color:#9b4f2e;font-weight:700">Verified</strong> 认证标志的技能</li>
+<li style="margin:.6em 0;color:#333">✅ 安装前看一眼代码，有没有可疑的 <code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">curl | bash</code> 或 <code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">sudo</code> 命令</li>
+<li style="margin:.6em 0;color:#333">✅ 一次只装一个，用几天确认没问题再装下一个</li>
+<li style="margin:.6em 0;color:#333">❌ 不要装来路不明的技能</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">调试技能出问题时：</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">openclaw logs --verbose</code></pre>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第二章：多模型路由——省钱 70% 的秘诀</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">很多人第一个月就烧了 $100+，因为所有任务都丢给最贵的模型。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">其实没必要。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">核心原则：用对模型，不用最贵的。</strong></p>
+<table style="width:100%;border-collapse:collapse;margin:1.5em 0"><thead><tr><th style="background:#9b4f2e;color:#fff;padding:12px 16px;text-align:left;font-size:.95em">任务类型</th><th style="background:#9b4f2e;color:#fff;padding:12px 16px;text-align:left;font-size:.95em">推荐模型</th><th style="background:#9b4f2e;color:#fff;padding:12px 16px;text-align:left;font-size:.95em">原因</th></tr>
+</thead><tbody><tr><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">复杂推理、多步骤规划</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">Claude Opus / GPT-4</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">需要强推理能力</td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">日常对话、简单任务</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">Claude Haiku / Kimi K2.5</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">够用，便宜 10 倍</td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">文章写作、内容创作</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">Claude Sonnet</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">性价比之王</td></tr>
+<tr><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">文件整理、格式转换</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">MiniMax M2.5</td><td style="padding:11px 16px;border-bottom:1px solid #f0e8e4;color:#333">快且便宜</td></tr>
+</tbody></table>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">怎么配置多模型路由</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">在 <code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">~/.openclaw/openclaw.json</code> 里设置 primary + fallbacks：</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">{
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "minimax/MiniMax-M2.5",
+        "fallbacks": [
+          "anyrouter/claude-sonnet-4-6",
+          "kimi-coding/k2p5"
+        ]
+      }
+    }
+  }
+}</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">我的策略：</strong></p>
+<ul style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">默认用 MiniMax（便宜）</li>
+<li style="margin:.6em 0;color:#333">需要高质量输出时手动切换到 Sonnet</li>
+<li style="margin:.6em 0;color:#333">复杂分析才用 Opus</li>
+</ul>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">一个月下来，API 费用比之前少了一大半。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第三章：CRON 自动化——让 AI 主动干活</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 最强大的地方不是被动回答问题，而是<strong style="color:#9b4f2e;font-weight:700">主动执行任务</strong>。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">CRON 就是让 AI 按时间表自动工作的机制。</p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">常见自动化场景</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">① 每天早上发日程</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">每天 8:00 → 检查今日日程 → 发 Telegram 提醒</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">② 每周五总结</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">每周五 17:00 → 总结本周进展 → 发给我看</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">③ 每晚压缩记忆</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">每晚 23:00 → 运行 memory compact → 节省 token</code></pre>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">怎么设置 CRON</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">在 OpenClaw Dashboard 里点几下就能设置，比手动 cron 更智能。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">或者直接告诉 AI：</p>
+<blockquote style="margin:1.5em 0;padding:14px 20px;background:#fdf6f2;border-left:4px solid #9b4f2e;border-radius:0 8px 8px 0;color:#555"><p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">&quot;每天早上 8 点提醒我今天的待办事项&quot;</p>
+</blockquote>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">AI 会自动帮你创建 CRON 任务。</p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">Heartbeat 频率</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">Heartbeat 是 AI 定期检查是否有事情要做的机制。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">建议设置 30-60 分钟。</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">设成 5 分钟会让 API 费用飙升，大部分时候没必要那么频繁。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第四章：成本监控——防止 AI 偷偷烧钱</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">有人半夜被 Claude Opus 烧了几百刀，早上起来看账单差点哭出来。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">这种事完全可以避免。</p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">三道防线</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第一道：API 平台设置每日上限</strong></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">在 Anthropic / OpenAI 控制台设置每日消费上限。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">建议：测试阶段 $5/天，稳定使用后再调高。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第二道：安装 ClawWatcher</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">clawhub install clawwatcher</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">实时监控每个模型花了多少钱，可设每日硬上限。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">超过上限自动暂停，不会继续烧钱。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">第三道：定期 compact 记忆</strong></p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">openclaw compact</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">每周运行一次，把长对话压缩成摘要。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">对话越长，每次调用消耗的 token 越多。定期压缩能省 30-50% 的费用。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第五章：安全加固——别让 AI 变成漏洞</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 能执行系统命令，配置不当会有安全风险。</p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">SOUL.md 必须有安全边界</h3>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">## 安全边界（重要！）
+
+- 修改 .env 或 credentials/ 文件夹前必须经过我的二次确认
+- 单笔超过 $50 的操作必须获得我的"Y"确认
+- 永远不要在没有预览的情况下执行 rm 命令
+- 不要在我睡觉时间（23:00-07:00）发送非紧急通知</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">&quot;永远不要做&quot;清单非常重要。</strong> 写清楚边界，AI 才不会越界。</p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">不要暴露到公网</h3>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace"># ✅ 正确：只在本地运行
+bind: "loopback"  # 127.0.0.1
+
+# ❌ 错误：暴露到公网
+bind: "0.0.0.0"</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">如果需要远程访问，用 <strong style="color:#9b4f2e;font-weight:700">Tailscale</strong>，不要直接开放端口。</p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">定期更新</h3>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:20px;border-radius:10px;overflow-x:auto;margin:1.5em 0"><code style="background:none;color:#d4d4d4;padding:0;font-size:.9em;font-family:monospace">openclaw update</code></pre>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">每周运行一次。OpenClaw 更新很快，经常修补安全漏洞，别用老版本。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">第六章：进阶踩坑——我交过的学费（续）</h2>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">坑一：Heartbeat 设太短，一个月烧 $200</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">Heartbeat 设成了 5 分钟，AI 每 5 分钟就调用一次模型检查有没有事情做。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">一个月下来，光 Heartbeat 就烧了 $200。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">教训：Heartbeat 设 30-60 分钟，够用了。</strong></p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">坑二：装了恶意技能，API Key 被盗</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">从 ClawHub 装了一个看起来很好用的技能，结果是恶意软件。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">API Key 被盗，被人用来调用模型，账单飙升。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">教训：只装 Verified 技能，装之前看一眼代码。</strong></p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">坑三：没有备份 workspace，服务器崩了全没了</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">服务器出问题，workspace 里的所有配置、记忆、对话历史全没了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">重新配置花了两天。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">教训：定期备份 <code style="background:#fdf0eb;padding:2px 7px;border-radius:4px;font-size:.88em;color:#9b4f2e;font-family:monospace">~/.openclaw/workspace/</code> 到云端。</strong></p>
+<h3 style="font-size:1.1em;font-weight:700;color:#9b4f2e;margin:1.8em 0 .6em">坑四：技能版本不兼容</h3>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">OpenClaw 更新后，之前装的某个技能突然不工作了。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">教训：技能出问题先去它的 GitHub 页面看 issue，通常有人已经报告了。</strong></p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<h2 style="font-size:1.25em;font-weight:700;color:#2c2c2c;margin:2em 0 .6em;padding-bottom:8px;border-bottom:3px solid #9b4f2e;display:block">结尾</h2>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">从入门到进阶，OpenClaw 的学习曲线确实有点陡。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">但一旦配好了，它真的能帮你省很多时间。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">我现在每天花在重复性工作上的时间，比以前少了一大半。</p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><strong style="color:#9b4f2e;font-weight:700">学习路径建议：</strong></p>
+<ol style="padding-left:1.6em;margin:.8em 0"><li style="margin:.6em 0;color:#333">先把入门篇的基础配好，跑稳了</li>
+<li style="margin:.6em 0;color:#333">再装 1-2 个技能，感受一下扩展能力</li>
+<li style="margin:.6em 0;color:#333">配置多模型路由，开始省钱</li>
+<li style="margin:.6em 0;color:#333">设置几个 CRON 任务，让 AI 主动干活</li>
+<li style="margin:.6em 0;color:#333">最后做安全加固，放心用</li>
+</ol>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2">不要跳步，每个阶段扎实了再进入下一阶段。</p>
+<hr style="border:none;height:1px;background:linear-gradient(90deg,transparent,#ddd,transparent);margin:2.5em 0">
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><em style="color:#9b4f2e;font-style:normal">觉得有用，转发给你身边那个正在折腾 OpenClaw 的朋友。</em></p>
+<p style="margin:1.1em 0;color:#333;font-size:17px;line-height:2"><em style="color:#9b4f2e;font-style:normal">入门篇在这里：《OpenClaw 保姆级教程：从安装到 8 个 AI 分身，一篇搞定》</em></p>
+
+</div>
+</body>
+</html>

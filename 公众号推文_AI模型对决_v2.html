@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>两大AI巨头同日放大招！Claude Opus 4.6 vs GPT-5.3-Codex 谁更胜一筹？</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap');
+
+body { 
+  font-family: 'Noto Serif SC', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif; 
+  line-height: 1.8; 
+  color: #333; 
+  max-width: 800px; 
+  margin: 0 auto; 
+  padding: 20px; 
+  background: #f8f9fa;
+}
+
+/* 封面图 */
+.cover-img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+
+/* 标题 */
+h1 { 
+  font-size: 26px; 
+  font-weight: 700; 
+  text-align: center; 
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+
+/* 章节标题 - 红色左边框 + 底部红线 + 中文数字 */
+h2 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #c00000;
+  padding: 12px 0 12px 16px;
+  margin: 40px 0 25px;
+  border-left: 4px solid #c00000;
+  border-bottom: 2px solid #c00000;
+  background: #fff;
+}
+
+h2::before {
+  content: attr(data-num);
+  margin-right: 8px;
+  font-weight: 700;
+}
+
+/* 引言框 - 金句 */
+.quote-box {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 20px 25px;
+  margin: 25px 0;
+  border-radius: 4px;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.quote-box strong {
+  color: #fff;
+}
+
+/* 红色背景框 - 重点内容 */
+.red-box {
+  background: #c00000;
+  color: #fff;
+  padding: 18px 22px;
+  margin: 25px 0;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.red-box strong {
+  color: #fff;
+}
+
+/* 渐变框 - 核心观点 */
+.gradient-box {
+  background: linear-gradient(135deg, #c00000 0%, #4a90e2 100%);
+  color: #fff;
+  padding: 20px 25px;
+  margin: 25px 0;
+  border-radius: 4px;
+}
+
+/* 数据展示框 - 数学题样式 */
+.data-box {
+  background: #fff;
+  border: 2px solid #333;
+  padding: 20px 25px;
+  margin: 25px 0;
+  border-radius: 4px;
+  box-shadow: 4px 4px 0 #333;
+}
+
+.data-box .label {
+  display: inline-block;
+  background: #c00000;
+  color: #fff;
+  padding: 2px 10px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+/* 对比卡片 */
+.compare-card {
+  display: flex;
+  gap: 20px;
+  margin: 25px 0;
+}
+
+.compare-item {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  border-top: 4px solid;
+}
+
+.compare-item.left {
+  border-top-color: #4a90e2;
+}
+
+.compare-item.right {
+  border-top-color: #c00000;
+}
+
+.compare-item h4 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: #333;
+}
+
+/* 特性卡片 */
+.feature-card {
+  background: #fff;
+  border-left: 4px solid #c00000;
+  padding: 18px 22px;
+  margin: 15px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.feature-card h4 {
+  margin: 0 0 10px;
+  color: #c00000;
+  font-size: 16px;
+}
+
+/* 表格 */
+.data-table { 
+  width: 100%; 
+  border-collapse: collapse;
+  margin: 25px 0;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.data-table th {
+  background: #c00000;
+  color: #fff;
+  padding: 14px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.data-table td { 
+  padding: 12px 14px; 
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.data-table tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+/* 列表 */
+ul, ol { 
+  margin: 18px 0; 
+  padding-left: 28px;
+}
+
+li { 
+  margin: 10px 0;
+  line-height: 1.7;
+}
+
+/* 强调 */
+strong { 
+  font-weight: 600; 
+  color: #c00000;
+}
+
+/* 段落 */
+p { 
+  margin: 18px 0; 
+  font-size: 16px;
+  text-align: justify;
+}
+
+/* 页脚 */
+.footer-box {
+  background: #1a1a1a;
+  color: #fff;
+  padding: 25px 30px;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.footer-box p {
+  margin: 8px 0;
+}
+
+.footer-box .source {
+  font-size: 13px;
+  color: #888;
+  margin-top: 15px;
+}
+</style>
+</head>
+<body>
+
+<img src="cover_ai_generated.png" class="cover-img" alt="AI对决封面">
+
+<h1>两大AI巨头同日放大招！<br>Claude Opus 4.6 vs GPT-5.3-Codex<br>谁更胜一筹？</h1>
+<p class="subtitle">2026年2月5日 · AI圈重磅对决</p>
+
+<div class="quote-box">
+<strong>2026年2月5日</strong>，Anthropic 和 OpenAI 选择在同一天发布重磅模型。<br>
+这不是巧合，这是<strong>正面刚</strong>！
+</div>
+
+<h2 data-num="一、">小虾米速览</h2>
+
+<div class="compare-card">
+  <div class="compare-item left">
+    <h4>Claude Opus 4.6</h4>
+    <p><strong>核心卖点：</strong>多智能体协作 + 百万级上下文</p>
+    <p><strong>适合人群：</strong>金融分析师、产品经理、知识工作者</p>
+  </div>
+  <div class="compare-item right">
+    <h4>GPT-5.3-Codex</h4>
+    <p><strong>核心卖点：</strong>自我迭代 + 25%提速</p>
+    <p><strong>适合人群：</strong>程序员、全栈开发者、技术极客</p>
+  </div>
+</div>
+
+<h2 data-num="二、">Claude Opus 4.6：从"聊天"到"交付"</h2>
+
+<div class="gradient-box">
+<strong>核心理念：Vibe Working</strong><br>
+AI 不再只是聊天，而是真正接手实质性工作
+</div>
+
+<div class="feature-card">
+<h4>1️⃣ Agent Teams（智能体团队）</h4>
+<p>一群 AI 同时协作，大任务拆分成小块并行处理。就像拥有一支才华横溢的人类团队为你工作。</p>
+</div>
+
+<div class="feature-card">
+<h4>2️⃣ 百万 Token 上下文</h4>
+<ul>
+<li>一次性读完整个大型代码库</li>
+<li>分析几十份财报不看丢细节</li>
+<li>做深度文献综述不遗忘前文</li>
+</ul>
+</div>
+
+<div class="feature-card">
+<h4>3️⃣ PowerPoint 原生集成</h4>
+<p>Claude 直接嵌入 PowerPoint 侧边栏，<strong>在 PPT 里就能和 AI 协作</strong>完成演示文稿。</p>
+</div>
+
+<h2 data-num="三、">GPT-5.3-Codex：AI 开始"自己写自己"</h2>
+
+<div class="red-box">
+<strong>这是第一个参与自身开发的 AI 模型</strong><br>
+OpenAI 原话："GPT-5.3-Codex 是我们第一个在创造自身过程中发挥关键作用的模型。"
+</div>
+
+<div class="feature-card">
+<h4>1️⃣ 速度提升 25%</h4>
+<p>长任务执行更快，交互更流畅。</p>
+</div>
+
+<div class="feature-card">
+<h4>2️⃣ 全生命周期支持</h4>
+<p>不只是写代码，还包括：调试、部署、监控、写PRD、用户调研、测试与数据分析。</p>
+<p><strong>一句话：从想法到上线的全流程，AI 都能参与。</strong></p>
+</div>
+
+<div class="feature-card">
+<h4>3️⃣ 中途可调整，不丢上下文</h4>
+<p>任务执行到一半想改方向？没问题，不会前功尽弃。</p>
+</div>
+
+<div class="feature-card">
+<h4>4️⃣ 超长续航</h4>
+<p>支持运行超过一天的任务。OpenAI 测试：用 Codex 开发了两款网页游戏，跑了数百万 token。</p>
+</div>
+
+<h2 data-num="四、">深度对比：两条不同的进化路线</h2>
+
+<div class="data-box">
+<span class="label">对比分析</span>
+</table>
+</div>
+
+<table class="data-table">
+<tr><th>对比维度</th><th>Claude Opus 4.6</th><th>GPT-5.3-Codex</th></tr>
+<tr><td><strong>核心哲学</strong></td><td>团队协作，分工并行</td><td>自我迭代，独立进化</td></tr>
+<tr><td><strong>最强场景</strong></td><td>金融分析、商业文档、多文档研究</td><td>深度编程、全栈开发、长期项目</td></tr>
+<tr><td><strong>上下文长度</strong></td><td>100万 token</td><td>数百万 token（支持超一天任务）</td></tr>
+<tr><td><strong>速度</strong></td><td>稳定输出</td><td>提速 25%</td></tr>
+<tr><td><strong>特色功能</strong></td><td>PPT 原生集成、Agent Teams</td><td>自我调试、中途可调整</td></tr>
+<tr><td><strong>基准成绩</strong></td><td>Finance Agent 排名第一</td><td>SWE-Bench Pro / Terminal Bench 新高</td></tr>
+</table>
+
+<h2 data-num="五、">小虾米的观点</h2>
+
+<div class="gradient-box">
+<strong>Anthropic 走"组织进化"路线</strong><br>
+通过多智能体协作，让 AI 更像高效团队。适合需要大量文档分析的知识工作者。
+</div>
+
+<div class="gradient-box">
+<strong>OpenAI 走"个体进化"路线</strong><br>
+让单个模型具备自我改进能力。这是通往 AGI 的关键一步。
+</div>
+
+<div class="red-box">
+<strong>该用哪个？</strong><br>
+• 金融/商业/文档分析 → Claude Opus 4.6<br>
+• 编程/全栈/长期项目 → GPT-5.3-Codex<br><br>
+成年人不做选择...两个都可以试试 😏
+</div>
+
+<h2 data-num="六、">写在最后</h2>
+
+<div class="quote-box">
+2026年刚开年，AI 就已经卷成这样。<br>
+从"vibe coding"到"vibe working"，AI 正在从工具变成同事。<br><br>
+<strong>问题是：你准备好和 AI 一起工作了吗？</strong>
+</div>
+
+<div class="footer-box">
+<p><strong>你觉得哪个更香？欢迎在评论区聊聊你的看法 👇</strong></p>
+<p class="source">本文部分内容综合自 TechCrunch、CNBC、ZDNET 等媒体报道</p>
+</div>
+
+</body>
+</html>

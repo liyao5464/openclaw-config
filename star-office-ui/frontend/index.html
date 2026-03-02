@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小里的像素办公室</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0a0a0f;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Courier New', monospace;
+            overflow: hidden;
+        }
+        #game-container {
+            image-rendering: pixelated;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        }
+        #status-text {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ffd700;
+            font-family: 'Press Start 2P', monospace;
+            font-size: 10px;
+            background: rgba(30, 20, 10, 0.9);
+            padding: 8px 20px;
+            border-radius: 3px;
+            max-width: 92%;
+            text-align: center;
+            border: 2px solid #8B5E3C;
+            letter-spacing: 1px;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+    <div id="status-text">加载中...</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    <script>
+    const W = 800, H = 600;
+
+    const STATES = {
+        idle:        { name: '待命',     area: 'lounge' },
+        writing:     { name: '写作中',   area: 'office' },
+        researching: { name: '查资料',   area: 'office' },
+        executing:   { name: '执行任务', area: 'kitchen' },
+        syncing:     { name: '同步备份', area: 'bedroom' },
+        error:       { name: '出错了',   area: 'lounge' }
+    };
+
+    const BUBBLE_TEXTS = {
+        idle:        ['摸鱼中…', '咖啡真好喝☕', '伸个懒腰~', '等老里指示', '好无聊啊', '看会书📖'],
+        writing:     ['灵感来了！', '写得手酸', '这段不错👍', '码字中...', '再改一遍'],
+        researching: ['让我搜一下', '找到线索了🔍', '这个有意思', '再深挖一点'],
+        executing:   ['冲鸭！🦆', '这个简单', '马上搞定💪', '全力输出！', '泡杯咖啡先'],
+        syncing:     ['备份备份', '安全第一🔒', '同步中…', '数据归档', '睡一会…💤'],
+        error:       ['啊哦…💥', '出bug了', '让我看看', '马上修好🔧']
+    };
+
+    let game, character, shadow, areas = {}, currentState = 'idle';
+    let statusText, lastFetch = 0, lastBlink = 0, lastBubble = 0;
+    let targetX, targetY, bubble = null;
+    let typewriterText = '', typewriterTarget = '', typewriterIndex = 0, lastTypewriter = 0;
+    let clawTween = null;
+
+    function preload() {
+        this.load.image('office_bg', '/static/office_bg.jpg');
+
+        // 人形龙虾角色 - 睁眼
+        const cOpen = this.make.graphics({ add: false });
+        drawLobster(cOpen, true);
+        cOpen.generateTexture('char_open', 48, 56);
+
+        // 人形龙虾角色 - 闭眼
+        const cClosed = this.make.graphics({ add: false });
+        drawLobster(cClosed, false);
+        cClosed.generateTexture('char_closed', 48, 56);
+    }
+
+    function drawLobster(g, eyesOpen) {
+        const cx = 24; // 中心x
+
+        // === 尾巴扇（红色） ===
+        g.fillStyle(0xCC2936);
+        g.fillRoundedRect(cx - 10, 48, 20, 6, 2);
+
+        // === 走路腿（红色） ===
+        g.lineStyle(2, 0xCC2936);
+        g.lineBetween(cx - 6, 40, cx - 12, 48);
+        g.lineBetween(cx - 4, 42, cx - 10, 50);
+        g.lineBetween(cx + 6, 40, cx + 12, 48);
+        g.lineBetween(cx + 4, 42, cx + 10, 50);
+
+        // === 主身体（红色甲壳） ===
+        g.fillStyle(0xCC2936);
+        g.fillRoundedRect(cx - 9, 16, 18, 28, 5);
+
+        // === 腹部（浅红） ===
+        g.fillStyle(0xE85D7A);
+        g.fillRoundedRect(cx - 5, 20, 10, 18, 3);
+
+        // === 钳子手臂（红色连接段） ===
+        g.fillStyle(0xCC2936);
+        g.fillRect(cx - 16, 18, 8, 5);
+        g.fillRect(cx + 8, 18, 8, 5);
+
+        // === 大钳子（红色） ===
+        // 左钳
+        g.fillStyle(0xCC2936);
+        g.fillCircle(cx - 18, 16, 7);
+        g.fillStyle(0xFF4444);
+        g.fillCircle(cx - 18, 14, 4);
+        // 钳口
+        g.fillStyle(0x991111);
+        g.fillTriangle(cx - 22, 12, cx - 14, 12, cx - 18, 9);
+
+        // 右钳
+        g.fillStyle(0xCC2936);
+        g.fillCircle(cx + 18, 16, 7);
+        g.fillStyle(0xFF4444);
+        g.fillCircle(cx + 18, 14, 4);
+        g.fillStyle(0x991111);
+        g.fillTriangle(cx + 14, 12, cx + 22, 12, cx + 18, 9);
+
+        // 钳子高光
+        g.fillStyle(0xFFFFFF, 0.5);
+        g.fillCircle(cx - 19, 13, 2);
+        g.fillCircle(cx + 17, 13, 2);
+
+        // === 头部（红色） ===
+        g.fillStyle(0xCC2936);
+        g.fillRoundedRect(cx - 8, 4, 16, 14, 5);
+
+        // === 眼睛（突出的眼柄） ===
+        // 眼柄
+        g.fillStyle(0xCC2936);
+        g.fillRect(cx - 7, 4, 3, 4);
+        g.fillRect(cx + 4, 4, 3, 4);
+
+        if (eyesOpen) {
+            g.fillStyle(0xFFFFFF);
+            g.fillCircle(cx - 6, 3, 4);
+            g.fillCircle(cx + 6, 3, 4);
+            g.fillStyle(0x000000);
+            g.fillCircle(cx - 5, 3, 2);
+            g.fillCircle(cx + 5, 3, 2);
+            // 高光
+            g.fillStyle(0xFFFFFF);
+            g.fillRect(cx - 6, 2, 1, 1);
+            g.fillRect(cx + 5, 2, 1, 1);
+        } else {
+            g.fillStyle(0xFFFFFF);
+            g.fillCircle(cx - 6, 3, 4);
+            g.fillCircle(cx + 6, 3, 4);
+            g.lineStyle(2, 0x000000);
+            g.lineBetween(cx - 8, 3, cx - 3, 3);
+            g.lineBetween(cx + 3, 3, cx + 8, 3);
+        }
+
+        // === 皇冠（金色） ===
+        g.fillStyle(0xFFD700);
+        g.fillRect(cx - 5, -2, 10, 4);
+        // 三个尖
+        g.fillTriangle(cx - 5, -2, cx - 3, -2, cx - 4, -6);
+        g.fillTriangle(cx - 1, -2, cx + 1, -2, cx, -8);
+        g.fillTriangle(cx + 3, -2, cx + 5, -2, cx + 4, -6);
+        // 宝石
+        g.fillStyle(0xFF0000);
+        g.fillCircle(cx, -1, 1);
+
+        // === 嘴巴 ===
+        g.fillStyle(0xFF6B6B);
+        g.fillRect(cx - 2, 14, 4, 2);
+    }
+
+    function create() {
+        game = this;
+
+        // 背景图（缩放到800x600）
+        const bg = this.add.image(W / 2, H / 2, 'office_bg');
+        bg.setDisplaySize(W, H);
+
+        // 区域坐标（基于等距像素风背景）
+        areas = {
+            office:  { x: 250, y: 250 },   // 左侧办公桌区域
+            lounge:  { x: 350, y: 380 },   // 中间扶手椅/阅读区
+            kitchen: { x: 500, y: 200 },   // 右上沙发区
+            bedroom: { x: 550, y: 350 }    // 右侧床铺区域
+        };
+
+        // 角色阴影
+        shadow = game.add.ellipse(areas.lounge.x, areas.lounge.y + 12, 16, 6, 0x000000, 0.2);
+        shadow.setDepth(49);
+
+        // 角色
+        character = game.physics.add.sprite(areas.lounge.x, areas.lounge.y, 'char_open');
+        character.setOrigin(0.5);
+        character.setScale(2.7);
+        character.setDepth(50);
+
+        targetX = areas.lounge.x;
+        targetY = areas.lounge.y;
+
+        // 底部牌匾
+        const bannerY = H - 28;
+        const bannerBg = game.add.rectangle(W / 2, bannerY, 340, 36, 0x3E2215, 0.92);
+        bannerBg.setStrokeStyle(2, 0xD4AF37);
+        bannerBg.setDepth(90);
+        // 内边框
+        const bannerInner = game.add.rectangle(W / 2, bannerY, 330, 28, 0x000000, 0);
+        bannerInner.setStrokeStyle(1, 0x8B6914, 0.5);
+        bannerInner.setDepth(90);
+
+        game.add.text(W / 2, bannerY, '⭐  小里的像素办公室  ⭐', {
+            fontFamily: '"Press Start 2P", monospace',
+            fontSize: '11px',
+            color: '#ffd700',
+            stroke: '#000',
+            strokeThickness: 2
+        }).setOrigin(0.5).setDepth(91);
+
+        // 两侧星星装饰
+        game.add.text(W / 2 - 160, bannerY, '⭐', { fontSize: '14px' }).setOrigin(0.5).setDepth(91);
+        game.add.text(W / 2 + 160, bannerY, '⭐', { fontSize: '14px' }).setOrigin(0.5).setDepth(91);
+
+        statusText = document.getElementById('status-text');
+        fetchStatus();
+
+        // 钳子摆动动画
+        startIdleAnimation();
+    }
+
+    function startIdleAnimation() {
+        // 呼吸效果
+        clawTween = game.tweens.add({
+            targets: character,
+            scaleY: { from: 2.7, to: 2.75 },
+            duration: 1200,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+        // 左右摇晃
+        game.tweens.add({
+            targets: character,
+            angle: { from: -5, to: 5 },
+            duration: 2000,
+            yoyo: true,
+            repeat: -1,
+            ease: 'Sine.easeInOut'
+        });
+    }
+
+    function update(time) {
+        if (time - lastFetch > 2500) { fetchStatus(); lastFetch = time; }
+
+        // 眨眼
+        if (time - lastBlink > 3000 + Math.random() * 2000) {
+            character.setTexture('char_closed');
+            lastBlink = time;
+            game.time.delayedCall(150, () => { if (character) character.setTexture('char_open'); });
+        }
+
+        // 冒气泡
+        if (time - lastBubble > 6000 + Math.random() * 4000) {
+            showBubble();
+            lastBubble = time;
+        }
+
+        // 打字机效果
+        if (typewriterIndex < typewriterTarget.length && time - lastTypewriter > 50) {
+            typewriterText += typewriterTarget[typewriterIndex];
+            statusText.textContent = typewriterText;
+            typewriterIndex++;
+            lastTypewriter = time;
+        }
+
+        moveCharacter(time);
+
+        // 同步阴影位置
+        shadow.setPosition(character.x, character.y + 12);
+    }
+
+    function normalizeState(s) {
+        if (!s) return 'idle';
+        const map = { working: 'writing', run: 'executing', running: 'executing', sync: 'syncing', research: 'researching' };
+        return map[s] || (STATES[s] ? s : 'idle');
+    }
+
+    function fetchStatus() {
+        fetch('/status').then(r => r.json()).then(data => {
+            const next = normalizeState(data.state);
+            const info = STATES[next];
+            const changed = next !== currentState;
+            currentState = next;
+            const line = `[${info.name}] ${data.detail || '...'}`;
+            if (changed || typewriterTarget !== line) {
+                typewriterTarget = line;
+                typewriterText = '';
+                typewriterIndex = 0;
+                if (changed) {
+                    const t = areas[info.area];
+                    targetX = t.x + (Math.random() - 0.5) * 30;
+                    targetY = t.y + (Math.random() - 0.5) * 20;
+                }
+            }
+        }).catch(() => {
+            typewriterTarget = '连接失败，正在重试...';
+            typewriterText = '';
+            typewriterIndex = 0;
+        });
+    }
+
+    function moveCharacter(time) {
+        const info = STATES[currentState] || STATES.idle;
+        const base = areas[info.area] || areas.lounge;
+
+        // 随机踱步（更频繁）
+        if (Math.random() < 0.01) {
+            targetX = base.x + (Math.random() - 0.5) * 80;
+            targetY = base.y + (Math.random() - 0.5) * 60;
+        }
+
+        const dx = targetX - character.x;
+        const dy = targetY - character.y;
+        const speed = 2.0;
+
+        if (Math.abs(dx) > 2) character.x += Math.sign(dx) * speed;
+        if (Math.abs(dy) > 2) character.y += Math.sign(dy) * speed;
+
+        // 走路时上下颠
+        if (Math.abs(dx) > 2 || Math.abs(dy) > 2) {
+            character.y += Math.sin(time / 150) * 0.5;
+        }
+
+        // Y-sorting depth
+        character.setDepth(50 + character.y * 0.01);
+
+        // 气泡跟随角色
+        if (bubble) {
+            bubble.setPosition(character.x, character.y - 48);
+        }
+    }
+
+    function showBubble() {
+        if (bubble) { bubble.destroy(); bubble = null; }
+        const texts = BUBBLE_TEXTS[currentState] || BUBBLE_TEXTS.idle;
+        const text = texts[Math.floor(Math.random() * texts.length)];
+        const pw = Math.max(text.length * 11 + 20, 80);
+
+        // 气泡背景
+        const bg = game.add.rectangle(character.x, character.y - 48, pw, 26, 0xFFF8DC, 0.92);
+        bg.setStrokeStyle(2, 0x8B5E3C);
+        bg.setDepth(200);
+
+        // 小三角
+        const tri = game.add.triangle(character.x, character.y - 34, 0, 0, 12, 0, 6, 8, 0xFFF8DC, 0.92);
+        tri.setDepth(200);
+
+        // 文字
+        const txt = game.add.text(character.x, character.y - 48, text, {
+            font: '12px monospace',
+            fill: '#333',
+            align: 'center'
+        }).setOrigin(0.5).setDepth(201);
+
+        bubble = game.add.container(0, 0, [bg, tri, txt]);
+
+        // 淡入
+        bubble.setAlpha(0);
+        game.tweens.add({ targets: bubble, alpha: 1, duration: 200 });
+
+        // 3.5秒后淡出
+        game.time.delayedCall(3500, () => {
+            if (bubble) {
+                game.tweens.add({
+                    targets: bubble, alpha: 0, duration: 300,
+                    onComplete: () => { if (bubble) { bubble.destroy(); bubble = null; } }
+                });
+            }
+        });
+    }
+
+    new Phaser.Game({
+        type: Phaser.AUTO,
+        width: W,
+        height: H,
+        parent: 'game-container',
+        pixelArt: true,
+        physics: { default: 'arcade', arcade: { gravity: { y: 0 }, debug: false } },
+        scene: { preload, create, update }
+    });
+    </script>
+</body>
+</html>

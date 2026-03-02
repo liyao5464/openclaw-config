@@ -1,0 +1,5 @@
+# 图像生成配置
+DASHSCOPE_API_KEY=sk-a0a58e7d5a1f46a08d1884c84c1bfc96
+DASHSCOPE_ENDPOINT=https://dashscope.aliyuncs.com/api/v1/services/aigc/multimodal-generation/generation
+IMAGE_MODEL=wan2.6-t2i
+IMAGE_SIZE=1024*1024
