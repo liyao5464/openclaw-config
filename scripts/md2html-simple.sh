@@ -32,6 +32,12 @@ CONTENT=$(echo "$CONTENT" | sed 's/^> \(.*\)$/<blockquote>\1<\/blockquote>/')
 CONTENT=$(echo "$CONTENT" | sed 's/^- \(.*\)$/<li>\1<\/li>/')
 CONTENT=$(echo "$CONTENT" | sed 's/^[0-9]\. \(.*\)$/<li>\1<\/li>/')
 
+# 处理分割线
+CONTENT=$(echo "$CONTENT" | sed 's/^---$/<hr style="border-top:1px solid #eee;margin:30px 0;">/')
+
+# 处理代码块（行内）
+CONTENT=$(echo "$CONTENT" | sed 's/`\(.*\)`/<code style="background:#f5f5f5;padding:2px 6px;border-radius:3px;font-family:monospace;">\1<\/code>/g')
+
 # 处理段落（非空行且不以<开头）
 CONTENT=$(echo "$CONTENT" | awk '
 BEGIN { in_para = 0 }
