@@ -78,6 +78,7 @@
 | `main` | 小虾米 🦐 | 统筹全局、私人助理 | `SOUL.md` + `USER.md` + `MEMORY.md` | `sessions_send(agentId="main", ...)` |
 | `director` | 内容总监 ✍️ | 每日选题、新闻推送、内容策划 | `agents/director/README.md` | `sessions_send(agentId="director", ...)` |
 | `libi` | 李笔 📝 | Twitter/X 内容创作与发布 | `agents/libi/README.md` | `sessions_send(agentId="libi", ...)` |
+| `coder` | AI工程师 💻 | 编程开发、代码调试、技术实现 | `workspace-coder/AGENTS.md` | `sessions_send(agentId="coder", ...)` |
 
 ### 🚧 规划中（未上线）
 
